@@ -1,0 +1,40 @@
+[versions]
+# Plugin Version
+kotlin = "1.8.10"
+androidGradlePlugin = "8.0.0"
+
+# AndroidX
+core-ktx = "1.10.0"
+appcompat = "1.6.1"
+material = "1.8.0"
+constraintlayout = "2.1.4"
+
+#Test
+junit = "4.13.2"
+junit-ext = "1.1.5"
+core-espresso = "3.5.1"
+
+
+[plugins]
+# Project Dependency
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin"}
+android-library = { id = "com.android.library", version.ref = "androidGradlePlugin"}
+kotlin-plugin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin"}
+
+
+[libraries]
+# AndroidX
+core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat"}
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout"}
+test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit-ext"}
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "core-espresso"}
+
+# Google
+material = { group = "com.google.android.material", name = "material", version.ref = "material"}
+
+# Test
+junit = { group = "junit", name = "junit", version.ref = "junit"}
+
+[bundles]
+
