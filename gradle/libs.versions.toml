@@ -2,6 +2,10 @@
 # Plugin Version
 kotlin = "1.8.10"
 androidGradlePlugin = "8.0.0"
+minSDK = "23"
+targetSDK = "33"
+versionCode = "1"
+versionName = "1.0.0"
 
 # AndroidX
 core-ktx = "1.10.0"
@@ -14,13 +18,17 @@ junit = "4.13.2"
 junit-ext = "1.1.5"
 core-espresso = "3.5.1"
 
+# Version Catalog Auto Update
+banManes = "0.41.0"
+little-robots = "0.8.0"
 
 [plugins]
 # Project Dependency
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin"}
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin"}
 kotlin-plugin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin"}
-
+banManes = { id = "com.github.ben-manes.versions", version.ref = "banManes" }
+littleRobots = { id = "nl.littlerobots.version-catalog-update", version.ref = "little-robots"}
 
 [libraries]
 # AndroidX
@@ -29,6 +37,7 @@ appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "a
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout"}
 test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit-ext"}
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "core-espresso"}
+littleRobots = { group = "nl.littlerobots.vcu", name = "plugin", version.ref = "little-robots"}
 
 # Google
 material = { group = "com.google.android.material", name = "material", version.ref = "material"}
