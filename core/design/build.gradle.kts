@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.tripbook.tripbook.domain"
+    namespace = "com.tripbook.tripbook.core.design"
 }
 
 dependencies {

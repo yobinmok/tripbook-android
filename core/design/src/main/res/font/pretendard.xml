@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:app="http://schemas.android.com/apk/res-auto">
+    <font
+        app:fontWeight="100"
+        app:font="@font/pretendard_thin"/>
+    <font
+        app:fontWeight="200"
+        app:font="@font/pretendard_extralight"
+        />
+    <font
+        app:fontWeight="300"
+        app:font="@font/pretendard_light"/>
+    <font
+        app:fontWeight="400"
+        app:font="@font/pretendard_regular"/>
+    <font
+        app:fontWeight="500"
+        app:font="@font/pretendard_medium"/>
+    <font
+        app:fontWeight="600"
+        app:font="@font/pretendard_semibold"/>
+    <font
+        app:fontWeight="700"
+        app:font="@font/pretendard_bold"/>
+    <font
+        app:fontWeight="800"
+        app:font="@font/pretendard_extrabold"/>
+    <font
+        app:fontWeight="900"
+        app:font="@font/pretendard-black"/>
+
+
+
+</font-family>
