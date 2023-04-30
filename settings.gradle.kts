@@ -4,6 +4,7 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
+
 }
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -11,6 +12,11 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
     }
+//    versionCatalogs {
+//        create("libs") {
+//            from(files("../gradle/libs.versions.toml"))
+//        }
+//    }
 }
 rootProject.name = "TripBook"
-include ':app'
+include(":app")
