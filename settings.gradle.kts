@@ -19,4 +19,6 @@ dependencyResolutionManagement {
 //    }
 }
 rootProject.name = "TripBook"
-include(":app")
+include(":presentation")
+include(":data")
+include(":domain")
