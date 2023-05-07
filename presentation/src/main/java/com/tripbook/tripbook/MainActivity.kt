@@ -1,11 +1,10 @@
 package com.tripbook.tripbook
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import com.tripbook.tripbook.base.BaseActivity
+import com.tripbook.tripbook.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
+
+    override fun init() {
     }
 }
