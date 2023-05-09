@@ -1,4 +1,3 @@
-
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.kotlin.plugin)
@@ -39,7 +38,7 @@ android {
 }
 
 dependencies {
-
+  
     implementation(project(":data"))
     implementation(project(":domain"))
 
