@@ -12,6 +12,12 @@
         android:theme="@style/Theme.TripBook"
         tools:targetApi="31">
         <activity
+            android:name=".views.splash.SplashActivity"
+            android:exported="false" />
+        <activity
+            android:name=".base.BaseActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

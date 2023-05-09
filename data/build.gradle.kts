@@ -41,4 +41,7 @@ dependencies {
     androidTestImplementation(libs.test.junit)
     androidTestImplementation(libs.espresso.core)
 
+    implementation(libs.retrofit)
+    implementation(libs.moshi)
+
 }

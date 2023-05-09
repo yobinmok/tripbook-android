@@ -22,10 +22,20 @@ core-espresso = "3.5.1"
 banManes = "0.41.0"
 little-robots = "0.8.0"
 
+#Libraries
+retrofit = "2.9.0"
+moshi-converter = "2.9.0"
+
+[plugins]
+# Project Dependency
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin"}
+android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+
 [plugins]
 # Project Dependency
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin"}
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin"}
+
 kotlin-plugin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin"}
 banManes = { id = "com.github.ben-manes.versions", version.ref = "banManes" }
 littleRobots = { id = "nl.littlerobots.version-catalog-update", version.ref = "little-robots"}
@@ -39,11 +49,22 @@ test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "core-espresso"}
 littleRobots = { group = "nl.littlerobots.vcu", name = "plugin", version.ref = "little-robots"}
 
+
 # Google
 material = { group = "com.google.android.material", name = "material", version.ref = "material"}
 
 # Test
 junit = { group = "junit", name = "junit", version.ref = "junit"}
+
+#coroutine
+
+#hilt
+
+#retrofit , moshi
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
+moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "moshi-converter"}
+
+#viewmodel
 
 [bundles]
 
