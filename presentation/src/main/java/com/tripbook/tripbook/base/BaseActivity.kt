@@ -1,12 +1,23 @@
 package com.tripbook.tripbook.base
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.tripbook.tripbook.R
+import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity<T: ViewDataBinding>(
+    @LayoutRes private val layoutResId: Int
+): AppCompatActivity() {
+
+    lateinit var binding: T
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_base)
+        binding = DataBindingUtil.setContentView(this, layoutResId)
+        binding.lifecycleOwner = this
+        init()
     }
+
+    protected abstract fun init()
 }
