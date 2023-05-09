@@ -30,6 +30,12 @@ moshi-converter = "2.9.0"
 # Project Dependency
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin"}
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+
+[plugins]
+# Project Dependency
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin"}
+android-library = { id = "com.android.library", version.ref = "androidGradlePlugin"}
+
 kotlin-plugin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin"}
 banManes = { id = "com.github.ben-manes.versions", version.ref = "banManes" }
 littleRobots = { id = "nl.littlerobots.version-catalog-update", version.ref = "little-robots"}
