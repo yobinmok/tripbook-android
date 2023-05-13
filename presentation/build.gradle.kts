@@ -3,6 +3,7 @@
 plugins {
     alias(libs.plugins.kotlin.plugin)
     alias(libs.plugins.android.application)
+    id("com.tripbook.hilt")
 }
 
 android {
@@ -49,8 +50,9 @@ android {
 
 dependencies {
     implementation(project(":data")) // 쓰이진 않음 ( Hilt 전용 )
-    implementation(project(":domain")) // 쓰이진 않음 ( Hilt 전용 )
+    implementation(project(":domain"))
     implementation(project(":libs:auth"))
+    implementation(project(":core:base"))
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)

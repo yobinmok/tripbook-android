@@ -14,8 +14,6 @@ appcompat = "1.6.1"
 material = "1.8.0"
 constraintlayout = "2.1.4"
 
-retrofit = "2.9.0"
-
 # Kotlinx
 coroutine = "1.6.4"
 
@@ -41,15 +39,11 @@ hilt = "2.44"
 [plugins]
 # Project Dependency
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin"}
-android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
-
-[plugins]
-# Project Dependency
-android-application = { id = "com.android.application", version.ref = "androidGradlePlugin"}
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin"}
 kotlin-plugin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin"}
 banManes = { id = "com.github.ben-manes.versions", version.ref = "banManes" }
 littleRobots = { id = "nl.littlerobots.version-catalog-update", version.ref = "little-robots"}
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt"}
 
 [libraries]
 # AndroidX
