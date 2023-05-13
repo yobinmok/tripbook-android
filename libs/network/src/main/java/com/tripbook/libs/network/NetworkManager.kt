@@ -1,6 +1,6 @@
 package com.tripbook.libs.network
 
-class NetWorkManger {
+class NetworkManager {
     fun chkNetWork() : Boolean {
         return false
     }

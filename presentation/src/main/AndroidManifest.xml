@@ -9,6 +9,7 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
+        android:name=".TripbookApplication"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.TripBook"
@@ -17,28 +18,12 @@
             android:name=".views.splash.SplashActivity"
             android:exported="false" />
         <activity
-            android:name=".base.BaseActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
-                <data android:host="oauth"
-                    android:scheme="kakao29be6a8cd5e9ee75a47b01008db4fc1a" />
             </intent-filter>
         </activity>
     </application>
