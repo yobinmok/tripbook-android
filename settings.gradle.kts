@@ -1,4 +1,13 @@
+@file:Suppress("UnstableApiUsage")
+
+include(":libs:network")
+
+
+include(":core:base")
+
+
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google()
         mavenCentral()
@@ -11,14 +20,15 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { setUrl("https://jitpack.io")}
+        maven { setUrl("https://devrepo.kakao.com/nexus/content/groups/public/") }
     }
-//    versionCatalogs {
-//        create("libs") {
-//            from(files("../gradle/libs.versions.toml"))
-//        }
-//    }
 }
 rootProject.name = "TripBook"
 include(":presentation")
 include(":data")
 include(":domain")
+include(":libs:auth")
+include(":libs:network")
+include(":core:design")
+include(":core:base")

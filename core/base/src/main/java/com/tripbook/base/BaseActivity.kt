@@ -1,4 +1,4 @@
-package com.tripbook.tripbook.base
+package com.tripbook.base
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes
