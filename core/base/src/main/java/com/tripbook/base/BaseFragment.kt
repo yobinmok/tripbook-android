@@ -28,10 +28,10 @@ abstract class BaseFragment<B: ViewDataBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
-        init()
+        initOnViewCreated()
     }
 
-    protected abstract fun init()
+    protected abstract fun initOnViewCreated()
 
     override fun onDestroyView() {
         _binding = null

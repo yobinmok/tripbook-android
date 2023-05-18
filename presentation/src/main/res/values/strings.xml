@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">TripBook</string>
+    <string name="nickname_label">멋진 여행 기록을 위해\n닉네임을 입력해주세요</string>
+    <string name="nickname_button">닉네임 만들었어요</string>
+    <string name="nickname_hint">10자 이내 한글 혹은 영문</string>
+    <string name="profile_label">멋진 여행 기록을 위해\n프로필 이미지를 등록해주세요</string>
+    <string name="profile_later_label">다음에 할게요</string>
+    <string name="album">앨범에서 사진 선택</string>
+    <string name="camera">지금 사진 촬영</string>
+    <string name="basic_image">기본 이미지 사용</string>
+    <string name="profile_cancel">취소</string>
 </resources>

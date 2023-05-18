@@ -13,6 +13,8 @@ core-ktx = "1.10.0"
 appcompat = "1.6.1"
 material = "1.8.0"
 constraintlayout = "2.1.4"
+activity = "1.6.0"
+fragment = "1.5.5"
 
 # Kotlinx
 coroutine = "1.6.4"
@@ -53,6 +55,9 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit-ext"}
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "core-espresso"}
 littleRobots = { group = "nl.littlerobots.vcu", name = "plugin", version.ref = "little-robots"}
+activity = {group = "androidx.activity", name = "activity", version.ref="activity"}
+activity-ktx = {group = "androidx.activity", name = "activity-ktx", version.ref="activity"}
+fragment-ktx = {group = "androidx.fragment", name = "fragment-ktx", version.ref ="fragment"}
 
 # Google
 material = { group = "com.google.android.material", name = "material", version.ref = "material"}
@@ -64,8 +69,6 @@ coroutine = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-androi
 junit = { group = "junit", name = "junit", version.ref = "junit"}
 
 #coroutine
-
-#hilt
 
 #retrofit , moshi
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}

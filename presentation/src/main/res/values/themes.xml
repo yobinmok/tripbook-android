@@ -12,5 +12,17 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:dialogTheme">@style/DialogTheme</item>
+    </style>
+
+    <style name="some_id">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+<!--        <item name="android:statusBarColor">@color/white</item>-->
+<!--        <item name="android:backgroundDimEnabled">true</item>-->
     </style>
 </resources>

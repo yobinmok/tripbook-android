@@ -16,13 +16,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             getString(com.tripbook.tripbook.libs.auth.R.string.com_auth_domain)
         )
 
-        binding.buttonLogin.setOnClickListener {
-            loginWithBrowser(account)
-        }
-
-        binding.buttonLogout.setOnClickListener {
-            logout(account)
-        }
+//        binding.buttonLogin.setOnClickListener {
+//            loginWithBrowser(account)
+//        }
+//
+//        binding.buttonLogout.setOnClickListener {
+//            logout(account)
+//        }
     }
 
 }
