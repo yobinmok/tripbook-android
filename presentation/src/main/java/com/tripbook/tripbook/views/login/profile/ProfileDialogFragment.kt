@@ -11,23 +11,32 @@ import android.view.ViewGroup
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
+import com.tripbook.tripbook.R
 import com.tripbook.tripbook.databinding.FragmentProfileBinding
 import com.tripbook.tripbook.databinding.FragmentProfileDialogBinding
+import com.tripbook.tripbook.viewmodel.ProfileViewModel
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class ProfileDialogFragment(profileBinding: FragmentProfileBinding): DialogFragment() {
+class ProfileDialogFragment(binding: FragmentProfileBinding): DialogFragment() {
+
+    private val viewModel: ProfileViewModel by viewModels()
+
 
     private var _binding: FragmentProfileDialogBinding? = null
     private val binding get() = _binding!!
+    private val profileBinding = binding
 
     private lateinit var photoUri: Uri
     private val galleryLauncher = registerForActivityResult(PickVisualMedia()){ uri ->
         if(uri != null){
             Log.d("Photo Picker", uri.toString())
             profileBinding.profile.setImageURI(uri)
+            viewModel.setProfileValid(true)
         }else{
             Log.d("Photo Picker", "No Media selected")
         }
@@ -35,8 +44,10 @@ class ProfileDialogFragment(profileBinding: FragmentProfileBinding): DialogFragm
     }
 
     private val cameraLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()){ isSuccess ->
-        if(isSuccess)
+        if(isSuccess) {
             profileBinding.profile.setImageURI(photoUri)
+            viewModel.setProfileValid(true)
+        }
         else
             Log.d("cameraLauncher", "Failed")
         dismiss()
@@ -52,7 +63,7 @@ class ProfileDialogFragment(profileBinding: FragmentProfileBinding): DialogFragm
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        profileBinding.viewModel = viewModel
         binding.album.setOnClickListener{
             galleryLauncher.launch(PickVisualMediaRequest(PickVisualMedia.ImageOnly))
         }
@@ -63,7 +74,11 @@ class ProfileDialogFragment(profileBinding: FragmentProfileBinding): DialogFragm
             }
         }
         binding.basicImage.setOnClickListener{
-            Log.d("ProfileDialogFragment", "basic")
+            viewModel.setProfileValid(true)
+            profileBinding.profile.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.tripbook_image))
+            dismiss()
+        }
+        binding.cancelButton.setOnClickListener{
             dismiss()
         }
     }

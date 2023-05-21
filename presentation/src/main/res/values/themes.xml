@@ -15,14 +15,23 @@
         <item name="android:dialogTheme">@style/DialogTheme</item>
     </style>
 
-    <style name="some_id">
-        <item name="android:textSize">14sp</item>
+    <style name="ProfileLabelStyle">
+        <item name="android:textSize">@dimen/profile_label_size</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowBackground">@android:color/transparent</item>
-<!--        <item name="android:statusBarColor">@color/white</item>-->
-<!--        <item name="android:backgroundDimEnabled">true</item>-->
+    </style>
+
+    <style name="EditTextTheme">
+        <item name="android:textSize">14sp</item>
+<!--        <item name="colorControlActivated">@color/black</item>-->
+        <item name="colorAccent">@color/tripBook_main</item>
+        <item name="colorControlNormal">#E5E5E5</item>
+        <item name="android:textColorHighlight">@color/tripBook_main_transparent</item>
+        <item name="android:textCursorDrawable">@drawable/ic_cursor</item>
     </style>
 </resources>

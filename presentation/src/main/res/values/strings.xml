@@ -9,4 +9,7 @@
     <string name="camera">지금 사진 촬영</string>
     <string name="basic_image">기본 이미지 사용</string>
     <string name="profile_cancel">취소</string>
+    <string name="profile_button">이미지 등록했어요</string>
+    <string name="nickname_sign_alert">한글, 영어, 숫자를 입력해주세요.</string>
+    <string name="nickname_length_alert">10글자 이내 한글 또는 영문, 숫자를 입력해주세요.</string>
 </resources>

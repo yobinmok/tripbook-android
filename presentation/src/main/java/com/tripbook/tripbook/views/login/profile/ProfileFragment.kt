@@ -1,5 +1,6 @@
 package com.tripbook.tripbook.views.login.profile
 
+import android.widget.ImageView
 import com.tripbook.base.BaseFragment
 import com.tripbook.tripbook.R
 import com.tripbook.tripbook.databinding.FragmentProfileBinding

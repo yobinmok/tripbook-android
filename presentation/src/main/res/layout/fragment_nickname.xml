@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="androidx.core.content.ContextCompat" />
+
+        <import type="com.tripbook.tripbook.R" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.tripbook.tripbook.viewmodel.ProfileViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -9,34 +23,56 @@
             android:id="@+id/nickname_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/profile_label_margin"
             android:text="@string/nickname_label"
+            style="@style/ProfileLabelStyle"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            android:layout_margin="20dp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:textSize="20sp"/>
-
-        <EditText
+        <com.tripbook.tripbook.views.login.profile.CustomEditText
             android:id="@+id/nickname"
+            style="@style/EditTextTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="18dp"
+            android:backgroundTint="@{viewModel.nicknameError ? ContextCompat.getColor(context, R.color.black) : ContextCompat.getColor(context, R.color.warning)}"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:hint="@string/nickname_hint"
-            app:layout_constraintTop_toBottomOf="@+id/nickname_label"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:paddingBottom="14dp"
+            android:theme="@style/EditTextTheme"
+            app:layout_constraintTop_toBottomOf="@id/nickname_label" />
 
-            android:layout_margin="18dp"/>
+        <TextView
+            android:id="@+id/nickname_alert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:drawablePadding="4dp"
+            android:textColor="@color/warning"
+            android:textSize="12sp"
+            android:visibility="@{viewModel.nicknameError ? View.GONE : View.VISIBLE, default=gone}"
+            app:drawableLeftCompat="@drawable/ic_alert"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nickname" />
+
         <Button
             android:id="@+id/nickname_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/profile_button_horizontal"
+            android:layout_marginRight="@dimen/profile_button_horizontal"
+            android:layout_marginBottom="@dimen/profile_button_bottom"
+            android:enabled="@{viewModel.isNicknameValid}"
+            android:padding="@dimen/profile_button_padding"
             android:text="@string/nickname_button"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="56dp"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
+
+

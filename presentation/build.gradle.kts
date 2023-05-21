@@ -60,9 +60,12 @@ dependencies {
     implementation(libs.material)
     implementation(libs.constraintlayout)
     implementation(libs.retrofit)
+
     implementation(libs.activity.ktx)
     implementation(libs.fragment.ktx)
-
+    implementation(libs.navigation)
+    implementation(libs.navigation.ui)
+    
     testImplementation(libs.junit)
     androidTestImplementation(libs.test.junit)
     androidTestImplementation(libs.espresso.core)
