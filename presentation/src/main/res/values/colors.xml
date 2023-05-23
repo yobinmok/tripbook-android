@@ -11,5 +11,7 @@
     <color name="tripBook_main">#FF4E16</color>
     <color name="tripBook_main_transparent">#40FF4E16</color>
     <color name="warning">#DD362C</color>
-    <color name="editText_unfocus">#E5E5E5</color>
+    <color name="editText_focusOut">#E5E5E5</color>
+    <color name="button_text">#4C4543</color>
+    <color name="profile_image">#EFECEC</color>
 </resources>

@@ -21,11 +21,11 @@
 
         <TextView
             android:id="@+id/nickname_label"
+            style="@style/ProfileLabelStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/profile_label_margin"
             android:text="@string/nickname_label"
-            style="@style/ProfileLabelStyle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,7 +35,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="18dp"
-            android:backgroundTint="@{viewModel.nicknameError ? ContextCompat.getColor(context, R.color.black) : ContextCompat.getColor(context, R.color.warning)}"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:hint="@string/nickname_hint"
@@ -50,24 +49,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:drawablePadding="4dp"
+            android:text="@{viewModel.errorMsg}"
             android:textColor="@color/warning"
             android:textSize="12sp"
             android:visibility="@{viewModel.nicknameError ? View.GONE : View.VISIBLE, default=gone}"
-            app:drawableLeftCompat="@drawable/ic_alert"
+            app:drawableLeftCompat="@drawable/ic_error"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nickname" />
 
         <Button
             android:id="@+id/nickname_button"
+            style="@style/profileButtonTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/profile_button_horizontal"
-            android:layout_marginRight="@dimen/profile_button_horizontal"
-            android:layout_marginBottom="@dimen/profile_button_bottom"
             android:enabled="@{viewModel.isNicknameValid}"
-            android:padding="@dimen/profile_button_padding"
             android:text="@string/nickname_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

@@ -32,6 +32,7 @@ little-robots = "0.8.0"
 #Libraries
 retrofit = "2.9.0"
 moshi-converter = "2.9.0"
+circleimageview = "3.1.0"
 
 # Authentication
 auth0 = "2.9.1"
@@ -89,6 +90,9 @@ auth0 = { group = "com.auth0.android", name = "auth0", version.ref = "auth0"}
 # Dependencies included in Build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+
+# circleimageview
+circleimageview = {module = "de.hdodenhof:circleimageview", version.ref = "circleimageview"}
 
 [bundles]
 

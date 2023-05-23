@@ -1,9 +1,11 @@
 package com.tripbook.tripbook.views.login.profile
 
 import android.content.Context.INPUT_METHOD_SERVICE
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.tripbook.base.BaseFragment
 import com.tripbook.tripbook.R
@@ -12,43 +14,44 @@ import com.tripbook.tripbook.viewmodel.ProfileViewModel
 
 class NicknameFragment: BaseFragment<FragmentNicknameBinding>(R.layout.fragment_nickname) {
 
-    private val viewModel: ProfileViewModel by viewModels()
+    private val viewModel: ProfileViewModel by activityViewModels()
 
-    override fun initOnViewCreated() {
+    override fun init() {
+        nicknameTextWatcher()
         binding.viewModel = viewModel
         binding.nicknameButton.setOnClickListener{
-            findNavController().navigate(R.id.action_nicknameFragment_to_profileFragment)
+            if(duplicateCheck()){
+                viewModel.setNickname(binding.nickname.text.toString())
+                findNavController().navigate(R.id.action_nicknameFragment_to_profileFragment)
+            }
         }
         binding.nickname.setOnEditorActionListener { _, action, _ ->
             if(action == EditorInfo.IME_ACTION_DONE){
                 val imm = requireActivity().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(binding.nickname.windowToken, 0)
-                validUI()
                 true
             }else
                 false
         }
     }
 
-    private fun validUI(){
-        if(isValid(binding.nickname.text.toString()))
-            viewModel.setNicknameValid(true)
-        else
-            viewModel.setNicknameValid(false)
+    private fun nicknameTextWatcher(){
+        binding.nickname.addTextChangedListener(object: TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                viewModel.setNicknameValid(binding.nickname.isNicknameValid(text!!))
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+            }
+        })
     }
 
-    private fun isValid(nickname: String): Boolean{
-        val regex = Regex("^[0-9a-zA-Z가-힣]+\$") // 닉네임 조건: 영문, 한글, 숫자를 포함하는 10글자 이내 문자열(자음, 모음, 공백 X)
-        return if(nickname.length > 10){
-            binding.nicknameAlert.text = getString(R.string.nickname_length_alert)
-            false
-        } else if (!nickname.matches(regex)) {
-            binding.nicknameAlert.text = getString(R.string.nickname_sign_alert)
-            false
-//        } else if(true){
-//            // 아이디 중복 여부 확인 -> 서버 통신
-//            false
-        }else
-            true
+    // 서버 확인 따로 -> 버튼 누르면
+    private fun duplicateCheck(): Boolean{
+        // 닉네임 중복확인 API 호출
+        return true
     }
 }

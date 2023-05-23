@@ -14,11 +14,11 @@ import com.tripbook.tripbook.R
 
 class CustomEditText: AppCompatEditText, TextWatcher, View.OnTouchListener, View.OnFocusChangeListener{
 
-    var clearDrawable: Drawable? = null
+    private var clearDrawable: Drawable? = null
     private var focusChangeListener: OnFocusChangeListener? = null
     private var touchListener: OnTouchListener? = null
+    var errorMsg: String? = ""
 
-    // AppCompatEditText 클래스 상속의 경우 부모 클래스의 생성자 호출
     constructor(context: Context): super(context){
         init()
     }
@@ -35,10 +35,8 @@ class CustomEditText: AppCompatEditText, TextWatcher, View.OnTouchListener, View
     private fun init(){
         val tempDrawable = ContextCompat.getDrawable(context, R.drawable.ic_clear)
         clearDrawable = DrawableCompat.wrap(tempDrawable!!)
-        DrawableCompat.setTintList(clearDrawable!!, hintTextColors) // 힌트 색상에 drawable 맞춤
         clearDrawable!!.setBounds(0, 0, clearDrawable!!.intrinsicWidth, clearDrawable!!.intrinsicHeight)
         setClearIconVisible(false)
-
 
         super.setOnTouchListener(this)
         super.setOnFocusChangeListener(this)
@@ -65,12 +63,27 @@ class CustomEditText: AppCompatEditText, TextWatcher, View.OnTouchListener, View
         if(isFocused)
             setClearIconVisible(text!!.isNotEmpty())
     }
-    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+    override fun beforeTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
     }
 
     override fun afterTextChanged(p0: Editable?) {
     }
 
+    fun isNicknameValid(nickname: CharSequence): String?{
+        // 닉네임 조건: 영문, 한글, 숫자를 포함하는 10글자 이내 문자열(자음, 모음, 공백 X)
+        val regex = Regex("^[0-9a-zA-Z가-힣]+\$")
+        if(nickname.length > 10){
+            backgroundTintList = ContextCompat.getColorStateList(context, R.color.warning)
+            errorMsg = resources.getString(R.string.nickname_length_alert)
+        } else if (!nickname.matches(regex)) {
+            backgroundTintList = ContextCompat.getColorStateList(context, R.color.warning)
+            errorMsg = resources.getString(R.string.nickname_sign_alert)
+        }else {
+            backgroundTintList = ContextCompat.getColorStateList(context, R.color.black)
+            errorMsg = null
+        }
+        return errorMsg
+    }
     override fun setOnFocusChangeListener(onFocusChangeListener: OnFocusChangeListener) {
         this.focusChangeListener = onFocusChangeListener
     }
@@ -100,4 +113,6 @@ class CustomEditText: AppCompatEditText, TextWatcher, View.OnTouchListener, View
 
         focusChangeListener?.onFocusChange(view, hasFocus)
     }
+
+
 }

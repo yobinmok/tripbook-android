@@ -8,7 +8,7 @@
         android:gravity="bottom|center">
         <LinearLayout
             android:layout_width="@dimen/profile_dialog_width"
-            android:layout_height="170dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/dialog"
             android:orientation="vertical">
 
@@ -19,6 +19,7 @@
                 android:layout_marginTop="@dimen/profile_dialog_margin"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@string/album"
+                android:textColor="@color/black"
                 android:textSize="14sp" />
 
             <View
@@ -35,6 +36,7 @@
                 android:layout_marginTop="@dimen/profile_dialog_margin"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@string/camera"
+                android:textColor="@color/black"
                 android:textSize="14sp" />
 
             <View
@@ -52,15 +54,18 @@
                 android:layout_marginBottom="@dimen/profile_dialog_margin"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@string/basic_image"
+                android:textColor="@color/black"
                 android:textSize="14sp" />
         </LinearLayout>
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/cancel_button"
             android:layout_width="@dimen/profile_dialog_width"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/black"
+            android:background="@drawable/border_dialog_cancel"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="48dp"
+            android:textSize="12sp"
+            android:textColor="@color/white"
             android:text="@string/profile_cancel"/>
     </LinearLayout>
 </layout>

@@ -65,6 +65,8 @@ dependencies {
     implementation(libs.fragment.ktx)
     implementation(libs.navigation)
     implementation(libs.navigation.ui)
+
+    implementation(libs.circleimageview)
     
     testImplementation(libs.junit)
     androidTestImplementation(libs.test.junit)
