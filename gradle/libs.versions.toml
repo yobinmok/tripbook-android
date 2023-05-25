@@ -14,6 +14,9 @@ appcompat = "1.6.1"
 material = "1.8.0"
 constraintlayout = "2.1.4"
 
+# Timber
+timber = "5.0.1"
+
 # Kotlinx
 coroutine = "1.6.4"
 
@@ -65,13 +68,15 @@ junit = { group = "junit", name = "junit", version.ref = "junit"}
 
 #coroutine
 
-#hilt
-
 #retrofit , moshi
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
 moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "moshi-converter"}
 
 #viewmodel
+
+#Logger
+timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
+
 #Hilt
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt"}
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt"}
