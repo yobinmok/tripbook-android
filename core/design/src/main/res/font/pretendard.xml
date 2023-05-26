@@ -27,7 +27,7 @@
         app:font="@font/pretendard_extrabold"/>
     <font
         app:fontWeight="900"
-        app:font="@font/pretendard-black"/>
+        app:font="@font/pretendard_black"/>
 
 
 

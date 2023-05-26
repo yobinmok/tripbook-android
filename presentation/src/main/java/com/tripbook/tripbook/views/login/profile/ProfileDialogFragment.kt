@@ -30,21 +30,22 @@ class ProfileDialogFragment: DialogFragment() {
 
     private lateinit var photoUri: Uri
     private val galleryLauncher = registerForActivityResult(PickVisualMedia()){ uri ->
-        if(uri != null){
+        uri?.let {
             Log.d("Photo Picker", uri.toString())
             viewModel.setProfileUri(uri)
-        }else{
+        } ?: {
             Log.d("Photo Picker", "No Media selected")
         }
         dismiss()
     }
 
     private val cameraLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()){ isSuccess ->
-        if(isSuccess)
+        if(isSuccess){
             viewModel.setProfileUri(photoUri)
-        else
+        }
+        else{
             Log.d("cameraLauncher", "Failed")
-
+        }
         dismiss()
     }
 
@@ -74,7 +75,6 @@ class ProfileDialogFragment: DialogFragment() {
                 .appendPath(resources.getResourceTypeName(R.drawable.tripbook_image))
                 .appendPath(resources.getResourceEntryName(R.drawable.tripbook_image))
                 .build()
-            Log.d("ProfileDialog", uri.toString())
             viewModel.setProfileUri(uri)
             dismiss()
         }

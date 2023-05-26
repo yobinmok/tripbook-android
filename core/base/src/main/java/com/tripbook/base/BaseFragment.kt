@@ -10,6 +10,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import android.content.Context.INPUT_METHOD_SERVICE
+import android.content.res.Configuration
+import android.util.Log
 
 abstract class BaseFragment<B: ViewDataBinding>(
     @LayoutRes private val layoutResId: Int
@@ -25,9 +27,6 @@ abstract class BaseFragment<B: ViewDataBinding>(
     ): View? {
         _binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
 
-        binding.root.setOnClickListener{
-            hideKeyboard()
-        }
         return binding.root
     }
 
@@ -39,12 +38,6 @@ abstract class BaseFragment<B: ViewDataBinding>(
 
     protected abstract fun init()
 
-    private fun hideKeyboard(){
-        if(activity != null && requireActivity().currentFocus != null){
-            val inputManager = requireActivity().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-            inputManager.hideSoftInputFromWindow(requireActivity().currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
-        }
-    }
     override fun onDestroyView() {
         _binding = null
         super.onDestroyView()

@@ -1,9 +1,10 @@
 package com.tripbook.tripbook.views.login.profile
 
-import android.content.Context.INPUT_METHOD_SERVICE
+import android.content.Context
+import android.graphics.Rect
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.inputmethod.EditorInfo
+import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -12,31 +13,44 @@ import com.tripbook.tripbook.R
 import com.tripbook.tripbook.databinding.FragmentNicknameBinding
 import com.tripbook.tripbook.viewmodel.ProfileViewModel
 
-class NicknameFragment: BaseFragment<FragmentNicknameBinding>(R.layout.fragment_nickname) {
+class NicknameFragment : BaseFragment<FragmentNicknameBinding>(R.layout.fragment_nickname) {
 
     private val viewModel: ProfileViewModel by activityViewModels()
+    private val layoutListener = OnGlobalLayoutListener {
+        val r = Rect()
+        binding.contentView.getWindowVisibleDisplayFrame(r)
+        val screenHeight = binding.contentView.rootView.height
 
-    override fun init() {
-        nicknameTextWatcher()
-        binding.viewModel = viewModel
-        binding.nicknameButton.setOnClickListener{
-            if(duplicateCheck()){
-                viewModel.setNickname(binding.nickname.text.toString())
-                findNavController().navigate(R.id.action_nicknameFragment_to_profileFragment)
+        val keypadHeight = screenHeight - r.bottom;
+        if (keypadHeight > screenHeight * 0.15) {
+            if (!viewModel.isKeyboardUp.value) {
+                viewModel.setKeyboard(true)
+                binding.root.setOnClickListener {
+                    hideKeyboard()
+                }
             }
-        }
-        binding.nickname.setOnEditorActionListener { _, action, _ ->
-            if(action == EditorInfo.IME_ACTION_DONE){
-                val imm = requireActivity().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(binding.nickname.windowToken, 0)
-                true
-            }else
-                false
+        } else {
+            if (viewModel.isKeyboardUp.value) viewModel.setKeyboard(false)
         }
     }
 
-    private fun nicknameTextWatcher(){
-        binding.nickname.addTextChangedListener(object: TextWatcher{
+    override fun init() {
+        nicknameTextWatcher()
+        binding.contentView.viewTreeObserver.addOnGlobalLayoutListener(layoutListener)
+        binding.viewModel = viewModel
+        binding.nicknameButton.setOnClickListener {
+            if (duplicateCheck()) {
+                binding.contentView.viewTreeObserver.removeOnGlobalLayoutListener(layoutListener)
+                viewModel.setNickname(binding.nickname.text.toString())
+                findNavController().navigate(R.id.action_nicknameFragment_to_profileFragment)
+            } else {
+                viewModel.setNicknameValid(binding.nickname.setError(resources.getString(R.string.nickname_duplicate_alert)))
+            }
+        }
+    }
+
+    private fun nicknameTextWatcher() {
+        binding.nickname.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -50,8 +64,20 @@ class NicknameFragment: BaseFragment<FragmentNicknameBinding>(R.layout.fragment_
     }
 
     // 서버 확인 따로 -> 버튼 누르면
-    private fun duplicateCheck(): Boolean{
+    private fun duplicateCheck(): Boolean {
         // 닉네임 중복확인 API 호출
         return true
     }
+
+    private fun hideKeyboard() {
+        if (activity != null && requireActivity().currentFocus != null) {
+            val inputManager =
+                requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputManager.hideSoftInputFromWindow(
+                requireActivity().currentFocus?.windowToken,
+                InputMethodManager.HIDE_NOT_ALWAYS
+            )
+        }
+    }
+
 }

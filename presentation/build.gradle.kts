@@ -54,6 +54,7 @@ dependencies {
     implementation(project(":libs:auth"))
     implementation(project(":libs:network"))
     implementation(project(":core:base"))
+    implementation(project(":core:design"))
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)

@@ -33,6 +33,7 @@ little-robots = "0.8.0"
 retrofit = "2.9.0"
 moshi-converter = "2.9.0"
 circleimageview = "3.1.0"
+glide = "4.15.1"
 
 # Authentication
 auth0 = "2.9.1"
@@ -92,7 +93,8 @@ android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", ver
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 
 # circleimageview
-circleimageview = {module = "de.hdodenhof:circleimageview", version.ref = "circleimageview"}
+circleimageview = {group = "de.hdodenhof", name= "circleimageview", version.ref = "circleimageview"}
 
+glide = {group = "com.github.bumptech.glide", name="glide", version.ref = "glide"}
 [bundles]
 
