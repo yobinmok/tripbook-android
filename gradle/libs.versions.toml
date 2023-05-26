@@ -13,6 +13,9 @@ core-ktx = "1.10.0"
 appcompat = "1.6.1"
 material = "1.8.0"
 constraintlayout = "2.1.4"
+activity = "1.6.0"
+fragment = "1.5.5"
+navigation = "2.5.3"
 
 # Kotlinx
 coroutine = "1.6.4"
@@ -29,6 +32,8 @@ little-robots = "0.8.0"
 #Libraries
 retrofit = "2.9.0"
 moshi-converter = "2.9.0"
+circleimageview = "3.1.0"
+glide = "4.15.1"
 
 # Authentication
 auth0 = "2.9.1"
@@ -53,6 +58,12 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit-ext"}
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "core-espresso"}
 littleRobots = { group = "nl.littlerobots.vcu", name = "plugin", version.ref = "little-robots"}
+activity = {group = "androidx.activity", name = "activity", version.ref="activity"}
+
+activity-ktx = {group = "androidx.activity", name = "activity-ktx", version.ref="activity"}
+fragment-ktx = {group = "androidx.fragment", name = "fragment-ktx", version.ref ="fragment"}
+navigation = {group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref="navigation"}
+navigation-ui = {group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation"}
 
 # Google
 material = { group = "com.google.android.material", name = "material", version.ref = "material"}
@@ -64,8 +75,6 @@ coroutine = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-androi
 junit = { group = "junit", name = "junit", version.ref = "junit"}
 
 #coroutine
-
-#hilt
 
 #retrofit , moshi
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
@@ -83,5 +92,9 @@ auth0 = { group = "com.auth0.android", name = "auth0", version.ref = "auth0"}
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 
+# circleimageview
+circleimageview = {group = "de.hdodenhof", name= "circleimageview", version.ref = "circleimageview"}
+
+glide = {group = "com.github.bumptech.glide", name="glide", version.ref = "glide"}
 [bundles]
 

@@ -54,6 +54,7 @@ dependencies {
     implementation(project(":libs:auth"))
     implementation(project(":libs:network"))
     implementation(project(":core:base"))
+    implementation(project(":core:design"))
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
@@ -61,6 +62,13 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.retrofit)
 
+    implementation(libs.activity.ktx)
+    implementation(libs.fragment.ktx)
+    implementation(libs.navigation)
+    implementation(libs.navigation.ui)
+
+    implementation(libs.circleimageview)
+    
     testImplementation(libs.junit)
     androidTestImplementation(libs.test.junit)
     androidTestImplementation(libs.espresso.core)

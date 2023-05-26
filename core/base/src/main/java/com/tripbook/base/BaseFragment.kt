@@ -4,10 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import android.content.Context.INPUT_METHOD_SERVICE
+import android.content.res.Configuration
+import android.util.Log
 
 abstract class BaseFragment<B: ViewDataBinding>(
     @LayoutRes private val layoutResId: Int
@@ -22,6 +26,7 @@ abstract class BaseFragment<B: ViewDataBinding>(
         savedInstanceState: Bundle?
     ): View? {
         _binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
+
         return binding.root
     }
 
