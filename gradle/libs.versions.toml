@@ -17,6 +17,9 @@ activity = "1.6.0"
 fragment = "1.5.5"
 navigation = "2.5.3"
 
+# Timber
+timber = "5.0.1"
+
 # Kotlinx
 coroutine = "1.6.4"
 
@@ -81,6 +84,10 @@ retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = 
 moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "moshi-converter"}
 
 #viewmodel
+
+#Logger
+timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
+
 #Hilt
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt"}
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt"}

@@ -14,4 +14,6 @@ android {
 
 dependencies {
     implementation(libs.appcompat)
+
+    api(libs.timber)
 }

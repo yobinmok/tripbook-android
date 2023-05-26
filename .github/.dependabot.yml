@@ -1,0 +1,9 @@
+version: 2
+enable-beta-ecosystems: true
+updates:
+  - package-ecosystem: "gradle"
+    directory: "/android"
+    schedule:
+      interval: weekly
+      time: "09:00"
+      timezone: Asia:Seoul
