@@ -109,10 +109,12 @@ class CustomEditText @JvmOverloads constructor(
     }
 
     override fun onFocusChange(view: View?, hasFocus: Boolean) {
-        if(hasFocus)
+        if(hasFocus) {
             setClearIconVisible(text!!.isNotEmpty())
-        else
+        }
+        else{
             setClearIconVisible(false)
+        }
 
         focusChangeListener?.onFocusChange(view, hasFocus)
     }

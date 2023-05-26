@@ -6,6 +6,8 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.view.inputmethod.InputMethodManager
+import androidx.core.widget.doOnTextChanged
+import androidx.databinding.adapters.TextViewBindingAdapter.OnTextChanged
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.tripbook.base.BaseFragment
@@ -50,17 +52,21 @@ class NicknameFragment : BaseFragment<FragmentNicknameBinding>(R.layout.fragment
     }
 
     private fun nicknameTextWatcher() {
-        binding.nickname.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
+//        binding.nickname.addTextChangedListener(object : TextWatcher {
+//            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//            }
+//
+//            override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//                viewModel.setNicknameValid(binding.nickname.isNicknameValid(text!!))
+//            }
+//
+//            override fun afterTextChanged(p0: Editable?) {
+//            }
+//        })
 
-            override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                viewModel.setNicknameValid(binding.nickname.isNicknameValid(text!!))
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-            }
-        })
+        binding.nickname.doOnTextChanged { text, _, _, _ ->
+            viewModel.setNicknameValid(binding.nickname.isNicknameValid(text!!))
+        }
     }
 
     // 서버 확인 따로 -> 버튼 누르면
@@ -70,7 +76,15 @@ class NicknameFragment : BaseFragment<FragmentNicknameBinding>(R.layout.fragment
     }
 
     private fun hideKeyboard() {
-        if (activity != null && requireActivity().currentFocus != null) {
+//        if (requireActivity().currentFocus != null) {
+//            val inputManager =
+//                requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+//            inputManager.hideSoftInputFromWindow(
+//                requireActivity().currentFocus?.windowToken,
+//                InputMethodManager.HIDE_NOT_ALWAYS
+//            )
+//        }
+        requireActivity().currentFocus?.let {
             val inputManager =
                 requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             inputManager.hideSoftInputFromWindow(

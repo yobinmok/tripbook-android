@@ -30,22 +30,23 @@ class ProfileViewModel : ViewModel() {
     val isKeyboardUp: StateFlow<Boolean> get() = _isKeyboardUp
 
     fun setNicknameValid(errorMsg: String?) {
-        if (errorMsg == null) {
-            _isNicknameValid.value = true
-            _nicknameError.value = true
-        } else {
-            _errorMsg.value = errorMsg
+        errorMsg?.let {str ->
+            _errorMsg.value = str
             _isNicknameValid.value = false
             _nicknameError.value = false
+        } ?: run {
+            _errorMsg.value = ""
+            _isNicknameValid.value = true
+            _nicknameError.value = true
         }
     }
 
     fun setProfileUri(uri: Uri?) {
-        if (uri == null)
-            _isProfileValid.value = false
-        else {
-            _profileUri.value = uri
+        uri?.let {
+            _profileUri.value = it
             _isProfileValid.value = true
+        } ?: run{
+            _isProfileValid.value = false
         }
     }
 
