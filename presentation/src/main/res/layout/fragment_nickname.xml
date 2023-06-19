@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
-        <import type="androidx.core.content.ContextCompat" />
-
-        <import type="com.tripbook.tripbook.R" />
 
         <import type="android.view.View" />
 
@@ -33,18 +30,19 @@
 
         <com.tripbook.tripbook.views.login.profile.CustomEditText
             android:id="@+id/nickname"
-            style="@style/EditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="18dp"
+            android:layout_marginTop="16dp"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:hint="@string/nickname_hint"
             android:imeOptions="actionDone"
             android:inputType="text"
-            android:paddingBottom="14dp"
             android:theme="@style/EditTextStyle"
-            app:layout_constraintTop_toBottomOf="@id/nickname_label" />
+            app:layout_constraintTop_toBottomOf="@id/nickname_label"
+            app:validDrawable="@{viewModel.icon}"
+            tools:layout_editor_absoluteX="17dp" />
 
         <TextView
             android:id="@+id/nickname_alert"
@@ -56,7 +54,7 @@
             android:text="@{viewModel.errorMsg}"
             android:textColor="@color/warning"
             android:textSize="12sp"
-            android:visibility="@{viewModel.nicknameError ? View.GONE : View.VISIBLE, default=gone}"
+            android:visibility="@{viewModel.errorMsg.equals(``) ? View.GONE : View.VISIBLE, default=gone}"
             app:drawableLeftCompat="@drawable/ic_error"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nickname" />
@@ -66,18 +64,18 @@
             style="@style/ButtonSolidStyle"
             android:layout_width="320dp"
             android:layout_height="52dp"
-            android:enabled="@{viewModel.isNicknameValid}"
-            android:text="@string/nickname_button"
             android:layout_marginLeft="@dimen/profile_button_horizontal"
             android:layout_marginRight="@dimen/profile_button_horizontal"
+            android:enabled="@{viewModel.isNicknameValid}"
+            android:text="@string/nickname_button"
             android:textSize="16sp"
-            app:marginBottom="@{viewModel.isKeyboardUp() ? @dimen/profile_button_bottom_up : @dimen/profile_button_bottom_down}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:background="@drawable/base_button"
             android:textColor="@color/base_button_text"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:marginBottom="@{viewModel.isKeyboardUp ? @dimen/profile_button_bottom_up : @dimen/profile_button_bottom_down}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 

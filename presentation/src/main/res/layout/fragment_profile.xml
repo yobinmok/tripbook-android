@@ -34,12 +34,13 @@
             android:background="@drawable/border_circleimageview"
             android:contentDescription="@string/profile_label"
             android:scaleType="center"
-            app:imgUri="@{viewModel.profileUri}"
             app:defaultImg="@{!viewModel.isProfileValid}"
+            app:imgUri="@{viewModel.profileUri}"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profile_label" />
+
         <TextView
             android:id="@+id/nickname"
             android:layout_width="wrap_content"
@@ -70,11 +71,11 @@
             style="@style/ButtonSolidStyle"
             android:layout_width="320dp"
             android:layout_height="52dp"
-            android:enabled="@{viewModel.isProfileValid()}"
-            android:text="@string/profile_button"
             android:layout_marginLeft="@dimen/profile_button_horizontal"
             android:layout_marginRight="@dimen/profile_button_horizontal"
             android:layout_marginBottom="@dimen/profile_button_bottom_down"
+            android:enabled="@{viewModel.isProfileValid}"
+            android:text="@string/profile_button"
             android:textSize="16sp"
             android:textColor="@color/base_button_text"
             android:background="@drawable/base_button"

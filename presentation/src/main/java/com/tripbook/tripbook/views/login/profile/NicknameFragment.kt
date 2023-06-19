@@ -1,13 +1,7 @@
 package com.tripbook.tripbook.views.login.profile
 
-import android.content.Context
-import android.graphics.Rect
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.ViewTreeObserver.OnGlobalLayoutListener
-import android.view.inputmethod.InputMethodManager
+import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
-import androidx.databinding.adapters.TextViewBindingAdapter.OnTextChanged
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.tripbook.base.BaseFragment
@@ -15,34 +9,17 @@ import com.tripbook.tripbook.R
 import com.tripbook.tripbook.databinding.FragmentNicknameBinding
 import com.tripbook.tripbook.viewmodel.ProfileViewModel
 
-class NicknameFragment : BaseFragment<FragmentNicknameBinding>(R.layout.fragment_nickname) {
+class NicknameFragment :
+    BaseFragment<FragmentNicknameBinding, ProfileViewModel>(R.layout.fragment_nickname) {
 
-    private val viewModel: ProfileViewModel by activityViewModels()
-    private val layoutListener = OnGlobalLayoutListener {
-        val r = Rect()
-        binding.contentView.getWindowVisibleDisplayFrame(r)
-        val screenHeight = binding.contentView.rootView.height
-
-        val keypadHeight = screenHeight - r.bottom;
-        if (keypadHeight > screenHeight * 0.15) {
-            if (!viewModel.isKeyboardUp.value) {
-                viewModel.setKeyboard(true)
-                binding.root.setOnClickListener {
-                    hideKeyboard()
-                }
-            }
-        } else {
-            if (viewModel.isKeyboardUp.value) viewModel.setKeyboard(false)
-        }
-    }
+    override val viewModel: ProfileViewModel by activityViewModels()
 
     override fun init() {
-        nicknameTextWatcher()
+        addNicknameTextWatcher()
         binding.contentView.viewTreeObserver.addOnGlobalLayoutListener(layoutListener)
         binding.viewModel = viewModel
         binding.nicknameButton.setOnClickListener {
             if (duplicateCheck()) {
-                binding.contentView.viewTreeObserver.removeOnGlobalLayoutListener(layoutListener)
                 viewModel.setNickname(binding.nickname.text.toString())
                 findNavController().navigate(R.id.action_nicknameFragment_to_profileFragment)
             } else {
@@ -51,21 +28,14 @@ class NicknameFragment : BaseFragment<FragmentNicknameBinding>(R.layout.fragment
         }
     }
 
-    private fun nicknameTextWatcher() {
-//        binding.nickname.addTextChangedListener(object : TextWatcher {
-//            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//            }
-//
-//            override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//                viewModel.setNicknameValid(binding.nickname.isNicknameValid(text!!))
-//            }
-//
-//            override fun afterTextChanged(p0: Editable?) {
-//            }
-//        })
-
+    private fun addNicknameTextWatcher() {
         binding.nickname.doOnTextChanged { text, _, _, _ ->
             viewModel.setNicknameValid(binding.nickname.isNicknameValid(text!!))
+        }
+        binding.nickname.doAfterTextChanged {
+            if (binding.nickname.text.toString() == "") {
+                viewModel.setIcon(0)
+            }
         }
     }
 
@@ -75,23 +45,8 @@ class NicknameFragment : BaseFragment<FragmentNicknameBinding>(R.layout.fragment
         return true
     }
 
-    private fun hideKeyboard() {
-//        if (requireActivity().currentFocus != null) {
-//            val inputManager =
-//                requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-//            inputManager.hideSoftInputFromWindow(
-//                requireActivity().currentFocus?.windowToken,
-//                InputMethodManager.HIDE_NOT_ALWAYS
-//            )
-//        }
-        requireActivity().currentFocus?.let {
-            val inputManager =
-                requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputManager.hideSoftInputFromWindow(
-                requireActivity().currentFocus?.windowToken,
-                InputMethodManager.HIDE_NOT_ALWAYS
-            )
-        }
+    override fun onStop() {
+        binding.contentView.viewTreeObserver.removeOnGlobalLayoutListener(layoutListener)
+        super.onStop()
     }
-
 }

@@ -42,16 +42,18 @@
         <item name="colorControlNormal">@color/editText_focusOut</item>
         <item name="android:textColorHighlight">@color/tripBook_main_transparent</item>
         <item name="android:textCursorDrawable">@drawable/ic_cursor</item>
+        <item name="android:paddingBottom">20dp</item>
     </style>
 
     <style name="ButtonSolidStyle" parent="Widget.AppCompat.Button">
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/button_text</item>
+        <item name="android:textColor">@color/button_text_color</item>
         <item name="android:background">@drawable/button_solid</item>
     </style>
 
     <style name="ButtonOutlineStyle" parent="Widget.AppCompat.Button">
         <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/button_text_color</item>
         <item name="android:background">@drawable/button_outline</item>
     </style>
 
