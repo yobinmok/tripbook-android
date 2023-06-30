@@ -4,9 +4,10 @@ plugins {
 }
 
 android {
-    namespace = "com.tripbook.tripbook.domain"
+    namespace = "com.tripbook.database"
 }
 
 dependencies {
+    implementation(libs.datastore.preference)
     implementation(libs.coroutine)
 }
