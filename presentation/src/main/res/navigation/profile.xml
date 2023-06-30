@@ -16,7 +16,6 @@
     <fragment
         android:id="@+id/nicknameFragment"
         android:name="com.tripbook.tripbook.views.login.profile.NicknameFragment"
-        android:label="NicknameFragment"
         tools:layout="@layout/fragment_nickname">
         <action
             android:id="@+id/action_nicknameFragment_to_profileFragment"
