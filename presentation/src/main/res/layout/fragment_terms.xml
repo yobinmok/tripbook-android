@@ -44,7 +44,7 @@
 
             <ImageView
                 android:id="@+id/all_terms_agree_bg"
-                android:layout_width="351dp"
+                android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:background="@drawable/dialog"
                 android:contentDescription="@null"/>
@@ -64,9 +64,9 @@
 
             <TextView
                 android:id="@+id/all_terms_agree_text"
-                android:layout_width="58dp"
+                android:layout_width="wrap_content"
                 app:layout_constraintBottom_toTopOf="@+id/all_terms_agree_bg"
-                android:layout_height="24dp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:layout_marginStart="52dp"
@@ -98,8 +98,9 @@
 
             <TextView
                 android:id="@+id/terms_service_text"
-                android:layout_width="240dp"
-                android:layout_height="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
                 android:layout_marginStart="8dp"
                 android:text="@string/terms_service"
                 android:textSize="16sp"
@@ -113,8 +114,8 @@
 
             <ImageView
                 android:id="@+id/terms_service_dialog"
-                android:layout_width="30dp"
-                android:layout_height="18dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:src="@drawable/icn_next_18"
                 android:contentDescription="@null" />
 
@@ -142,8 +143,9 @@
         <TextView
             android:id="@+id/terms_personal_info_text"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="match_parent"
             android:layout_marginStart="8dp"
+            android:gravity="center"
             android:textStyle="normal"
             android:text="@string/terms_personal_info"
             android:textSize="16sp"
@@ -156,8 +158,8 @@
 
         <ImageView
             android:id="@+id/terms_personal_info_dialog"
-            android:layout_width="30dp"
-            android:layout_height="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:src="@drawable/icn_next_18"
             android:layout_marginStart="16dp"
             android:contentDescription="@null" />
@@ -186,8 +188,9 @@
         <TextView
             android:id="@+id/terms_location_text"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="match_parent"
             android:layout_marginStart="8dp"
+            android:gravity="center"
             android:textStyle="normal"
             android:text="@string/terms_location"
             android:textSize="16sp"
@@ -200,8 +203,8 @@
 
         <ImageView
             android:id="@+id/terms_location_dialog"
-            android:layout_width="30dp"
-            android:layout_height="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:src="@drawable/icn_next_18"
             android:layout_marginStart="16dp"
             android:contentDescription="@null"/>
@@ -229,8 +232,9 @@
         <TextView
             android:id="@+id/terms_marketing_text"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="match_parent"
             android:layout_marginStart="8dp"
+            android:gravity="center"
             android:textStyle="normal"
             android:text="@string/terms_marketing"
             android:textSize="16sp"
@@ -243,8 +247,8 @@
 
         <ImageView
             android:id="@+id/terms_marketing_dialog"
-            android:layout_width="30dp"
-            android:layout_height="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:src="@drawable/icn_next_18"
             android:layout_marginStart="16dp"
             android:contentDescription="@null"/>
