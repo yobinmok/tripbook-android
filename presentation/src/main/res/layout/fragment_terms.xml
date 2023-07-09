@@ -20,7 +20,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="40dp"
             android:layout_marginRight="20dp"
             android:textStyle="bold"
             android:text="@string/terms_label"
@@ -31,10 +31,10 @@
             android:id="@+id/terms_agree_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="202dp"
+            android:layout_marginTop="40dp"
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/terms_label"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
@@ -72,7 +72,6 @@
                 android:layout_marginStart="52dp"
                 android:text="@string/all_terms_agree"
                 android:textColor="@color/black"
-                android:textFontWeight="1"
                 android:textSize="16sp"
                 android:textStyle="normal"/>
             </FrameLayout>
@@ -82,8 +81,10 @@
             android:id="@+id/terms_service_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="286dp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:layout_marginHorizontal="36dp"
+            app:layout_constraintTop_toBottomOf="@id/terms_agree_layout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
@@ -91,7 +92,6 @@
                 android:id="@+id/terms_service"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginStart="36dp"
                 android:background="@drawable/base_checkbox"
                 android:checked="@={viewModel.serviceChecked}"
                 android:button="@null" />
@@ -100,28 +100,34 @@
                 android:id="@+id/terms_service_text"
                 android:layout_width="240dp"
                 android:layout_height="20dp"
-                android:textFontWeight="1"
                 android:layout_marginStart="8dp"
                 android:text="@string/terms_service"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:textStyle="normal" />
 
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
             <ImageView
                 android:id="@+id/terms_service_dialog"
                 android:layout_width="30dp"
                 android:layout_height="18dp"
-                android:layout_marginStart="16dp"
                 android:src="@drawable/icn_next_18"
                 android:contentDescription="@null" />
+
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/terms_personal_info_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="334dp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="80dp"
+            android:gravity="center"
+            android:layout_marginHorizontal="36dp"
+            app:layout_constraintTop_toBottomOf="@id/terms_agree_layout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
@@ -130,7 +136,6 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:background="@drawable/base_checkbox"
-            android:layout_marginStart="36dp"
             android:button="@null"
             android:checked="@={viewModel.personalInfoChecked}"/>
 
@@ -140,10 +145,14 @@
             android:layout_height="20dp"
             android:layout_marginStart="8dp"
             android:textStyle="normal"
-            android:textFontWeight="1"
             android:text="@string/terms_personal_info"
             android:textSize="16sp"
             android:textColor="@color/black" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
 
         <ImageView
             android:id="@+id/terms_personal_info_dialog"
@@ -152,14 +161,17 @@
             android:src="@drawable/icn_next_18"
             android:layout_marginStart="16dp"
             android:contentDescription="@null" />
+
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/terms_location_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="380dp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="128dp"
+            android:gravity="center"
+            android:layout_marginHorizontal="36dp"
+            app:layout_constraintTop_toBottomOf="@id/terms_agree_layout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
@@ -168,7 +180,6 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:background="@drawable/base_checkbox"
-            android:layout_marginStart="36dp"
             android:button="@null"
             android:checked="@={viewModel.locationChecked}"/>
 
@@ -181,6 +192,11 @@
             android:text="@string/terms_location"
             android:textSize="16sp"
             android:textColor="@color/black" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
 
         <ImageView
             android:id="@+id/terms_location_dialog"
@@ -195,8 +211,10 @@
             android:id="@+id/terms_marketing_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="434dp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="176dp"
+            android:gravity="center"
+            android:layout_marginHorizontal="36dp"
+            app:layout_constraintTop_toBottomOf="@id/terms_agree_layout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
@@ -205,7 +223,6 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:background="@drawable/base_checkbox"
-            android:layout_marginStart="36dp"
             android:button="@null"
             android:checked="@={viewModel.marketingChecked}"/>
 
@@ -215,10 +232,14 @@
             android:layout_height="20dp"
             android:layout_marginStart="8dp"
             android:textStyle="normal"
-            android:textFontWeight="1"
             android:text="@string/terms_marketing"
             android:textSize="16sp"
             android:textColor="@color/black"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
 
         <ImageView
             android:id="@+id/terms_marketing_dialog"
