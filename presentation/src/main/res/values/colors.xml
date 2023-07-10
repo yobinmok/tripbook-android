@@ -25,6 +25,8 @@
     <color name="gray_G_100">#FF0E0C0C</color>
 
     <!--Brand - primary-->
+    <color name="p_1">#FFFFF9F2</color>
+    <color name="p_5">#FFECD9</color>
     <color name="p_10">#FFFFD6AD</color>
     <color name="p_20">#FFFFC294</color>
     <color name="p_30">#FFFFA770</color>
@@ -36,6 +38,8 @@
     <color name="p_90">#FF8F0500</color>
 
     <!--Brand - Secondary-->
+    <color name="s_1">#FFFFFCF0</color>
+    <color name="s_5">#FFFFF9E1</color>
     <color name="s_10">#FFFFF4C7</color>
     <color name="s_20">#FFFFEFAD</color>
     <color name="s_30">#FFFFE98F</color>
