@@ -3,8 +3,8 @@
 name: Android Build CI
 
 on:
-  pull_request:
-    branches: [ feature/* ]
+  push:
+    branches: [ develop ]
 
 jobs:
   build:
