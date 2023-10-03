@@ -61,4 +61,17 @@
     <string name="news_add_title">여행소식 작성</string>
     <string name="news_add_button">등록</string>
 
+    <!--my info-->
+    <string name="info_ask_title">1:1문의</string>
+    <string name="logout">로그아웃</string>
+    <string name="info_version">버전정보 v</string>
+    <string name="info_profile_title">프로필 수정</string>
+    <string name="info_ask_confirm">확인</string>
+    <string name="info_ask">서비스에 대한 궁금한 점이나 의견이 있으신가요?</string>
+    <string name="info_ask2">문의사항에 대한 답변은 2-3일 정도 소요될 수 있습니다.</string>
+    <string name="info_ask3">의견 보내기</string>
+    <string name="info_logout">로그아웃 되었습니다.</string>
+    <string name="info_logout2">다음에 또 만나요!</string>
+
+
 </resources>
