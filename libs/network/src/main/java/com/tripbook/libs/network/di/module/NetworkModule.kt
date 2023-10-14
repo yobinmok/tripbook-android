@@ -96,10 +96,22 @@ object NetworkModule {
 
     @Provides
     @Singleton
+    @MemberServiceScope //NoAuth로 변경
+    fun providesMemberNoAuthRetrofit(
+        moshi: Moshi,
+        @NoAuthNetworkQualifier client: OkHttpClient
+    ): Retrofit = Retrofit.Builder()
+        .baseUrl("$BASE_URL/member/")
+        .client(client)
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .build()
+
+    @Provides
+    @Singleton
     @MemberServiceScope
     fun providesMemberRetrofit(
         moshi: Moshi,
-        @NoAuthNetworkQualifier client: OkHttpClient
+        @AuthNetworkQualifier client: OkHttpClient
     ): Retrofit = Retrofit.Builder()
         .baseUrl("$BASE_URL/member/")
         .client(client)

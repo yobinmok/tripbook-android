@@ -5,6 +5,8 @@ import com.tripbook.database.TokenEntity
 import com.tripbook.libs.network.NetworkResult
 import com.tripbook.libs.network.safeApiCall
 import com.tripbook.libs.network.service.MemberService
+import com.tripbook.tripbook.data.mapper.toMemberInfo
+import com.tripbook.tripbook.domain.model.MemberInfo
 import com.tripbook.tripbook.domain.repository.MemberRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -89,4 +91,18 @@ class MemberRepositoryImpl @Inject constructor(
             else -> false
         }
     }
+
+    override fun getMember(): Flow<MemberInfo?> =
+        safeApiCall(Dispatchers.IO) {
+            memberService.getMember()
+        }.map { response ->
+            when (response) {
+                is NetworkResult.Success -> {
+                    response.value.toMemberInfo()
+                }
+                else -> null
+            }
+        }
+
+
 }

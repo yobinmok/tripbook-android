@@ -1,5 +1,6 @@
 package com.tripbook.libs.network.service
 
+import com.tripbook.libs.network.model.response.MemberResponse
 import com.tripbook.libs.network.model.response.SignUpResponse
 import com.tripbook.libs.network.model.response.UnitResponse
 import okhttp3.MultipartBody
@@ -23,4 +24,7 @@ interface MemberService {
     suspend fun validateNickname(
         @Query("name") nickname: String
     ): UnitResponse
+
+    @GET("select")
+    suspend fun getMember(): MemberResponse
 }

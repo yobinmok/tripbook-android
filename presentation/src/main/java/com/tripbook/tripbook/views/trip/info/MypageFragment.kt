@@ -1,12 +1,9 @@
 package com.tripbook.tripbook.views.trip.info
 
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
+import android.util.Log
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.tripbook.base.BaseFragment
 import com.tripbook.tripbook.R
@@ -19,32 +16,34 @@ class MypageFragment : BaseFragment<FragmentMypageBinding, InfoViewModel>(R.layo
 
     override fun init() {
 
-        //설정 버튼 클릭 -> 프로필 수정 화면으로 넘어감
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.getMemberInfo()
+            viewModel.memberInfo.collect {
+                if(it != null) {
+                    binding.nickname.text = it.name
+
+                    Log.d("테스트닉네임:::", "닉네임" + it.name)
+
+                }
+            }
+        }
+
+        //설정 -> 프로필 수정
         binding.btnSetting.setOnClickListener {
             findNavController().navigate(R.id.action_mypageFragment_to_profileModifyFragment)
         }
 
+        //1:1 문의
         binding.askDetail.setOnClickListener {
-
+            findNavController().navigate(R.id.action_mypageFragment_to_askFragment)
         }
 
+        //로그아웃
         binding.btnLogout.setOnClickListener {
-
+            findNavController().navigate(R.id.action_mypageFragment_to_logoutFragment)
         }
 
     }
 
-/*    private fun replaceFragment(fragment: Fragment) {
-        val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
-        val transaction: FragmentTransaction = fragmentManager.beginTransaction()
-
-        val containerId = fragment.arguments?.getInt("containerId") ?: 0
-
-        if (containerId != 0) {
-            transaction.replace(containerId, fragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
-        }
-    }*/
 
 }
