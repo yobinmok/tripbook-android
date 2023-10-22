@@ -22,6 +22,8 @@ class TripDetailFragment :
             viewModel = this@TripDetailFragment.viewModel
             val items = ArrayList<String>()
 
+            //서버에서 가져온 아티클 데이터 기반으로 수정하기
+
             for (i in 1..4) {
                 items.add("$i")
             }
@@ -42,6 +44,33 @@ class TripDetailFragment :
                 requireContext(),
                 com.tripbook.tripbook.core.design.R.anim.trip_detail_fade_out
             )
+
+            var isLiked = false
+
+            //좋아요
+            like.setOnClickListener {
+                //아티클id 전달
+
+                //색상 변경 (색 x -> 주황색, 색 o -> 다시 색 없애기)
+                //좋아요 취소도 다 서버로?
+
+                if(isLiked) { //이미 좋아요 O
+                    //viewModel.likeArticle(ArticleId) //아티클id 보내주면서 라이크 api 호출
+                    like.clearColorFilter()
+                    isLiked = false
+                } else {
+                    //viewModel.likeArticle(ArticleId) //아티클id 보내주면서 라이크 api 호출
+
+                    val likeColor = ContextCompat.getColor(requireContext(), R.color.tripBook_main)
+
+                    like.setColorFilter(likeColor)
+                    isLiked = true
+
+                    //서버에서 가져온 상세보기 중 좋아요 수 넣어주기
+
+                }
+            }
+
 
             val appBar = appBarLayout
             val bottomBar = tripDetailBottom

@@ -3,6 +3,7 @@ package com.tripbook.libs.network.service
 import com.tripbook.libs.network.model.response.MemberResponse
 import com.tripbook.libs.network.model.response.SignUpResponse
 import com.tripbook.libs.network.model.response.UnitResponse
+import com.tripbook.libs.network.model.response.UpdateMemberResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.GET
@@ -27,4 +28,11 @@ interface MemberService {
 
     @GET("select")
     suspend fun getMember(): MemberResponse
+
+    @Multipart
+    @POST("update")
+    suspend fun updateMember(
+        @Part file : MultipartBody.Part?,
+        @PartMap params : Map<String, @JvmSuppressWildcards RequestBody>
+    ) : UpdateMemberResponse
 }

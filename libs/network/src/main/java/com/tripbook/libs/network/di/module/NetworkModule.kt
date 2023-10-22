@@ -2,6 +2,7 @@ package com.tripbook.libs.network.di.module
 
 import com.squareup.moshi.Moshi
 import com.tripbook.database.TokenDataStore
+import com.tripbook.libs.network.di.qualifier.ArticleServiceScope
 import com.tripbook.libs.network.di.qualifier.AuthNetworkQualifier
 import com.tripbook.libs.network.di.qualifier.AuthServiceScope
 import com.tripbook.libs.network.di.qualifier.LocationServiceScope
@@ -141,6 +142,19 @@ object NetworkModule {
         .client(client)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
+
+    @Provides
+    @Singleton
+    @ArticleServiceScope
+    fun providesArticleRetrofit(
+        moshi: Moshi,
+        @NoAuthNetworkQualifierNoAgent client: OkHttpClient
+    ): Retrofit = Retrofit.Builder()
+        .baseUrl("$BASE_URL/articles/")
+        .client(client)
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .build()
+
 
     private fun getBaseOkhttpBuilder(): OkHttpClient.Builder = OkHttpClient.Builder()
         .callTimeout(10, TimeUnit.SECONDS)

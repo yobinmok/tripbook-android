@@ -34,6 +34,14 @@
         android:id="@+id/logoutFragment"
         android:name="com.tripbook.tripbook.views.trip.info.LogoutFragment"
         tools:layout="@layout/fragment_logout">
+        <action
+            android:id="@+id/action_logoutFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.tripbook.tripbook.views.login.LoginFragment">
+
     </fragment>
 
 

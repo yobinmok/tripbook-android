@@ -23,4 +23,15 @@ interface MemberRepository {
     ): Flow<Boolean>
 
     fun getMember() : Flow<MemberInfo?>
+
+    fun updateMember(
+        name: String,
+        file: File?,
+        termsOfService: Boolean,
+        termsOfPrivacy: Boolean,
+        termsOfLocation: Boolean,
+        marketingConsent: Boolean,
+        gender: String,
+        birth: String
+    ): Flow<Boolean>
 }

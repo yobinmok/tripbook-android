@@ -1,8 +1,10 @@
 package com.tripbook.tripbook.data.di
 
+import com.tripbook.tripbook.data.repository.ArticleRepositoryImpl
 import com.tripbook.tripbook.data.repository.AuthRepositoryImpl
 import com.tripbook.tripbook.data.repository.LocationRepositoryImpl
 import com.tripbook.tripbook.data.repository.MemberRepositoryImpl
+import com.tripbook.tripbook.domain.repository.ArticleRepository
 import com.tripbook.tripbook.data.repository.TripNewsRepositoryImpl
 import com.tripbook.tripbook.domain.repository.AuthRepository
 import com.tripbook.tripbook.domain.repository.LocationRepository
@@ -33,4 +35,8 @@ interface RepositoryModule {
     @Binds
     @Singleton
     fun bindTripNewsRepository(impl: TripNewsRepositoryImpl): TripNewsRepository
+
+    @Binds
+    @Singleton
+    fun bindsArticleRepository(impl: ArticleRepositoryImpl): ArticleRepository
 }

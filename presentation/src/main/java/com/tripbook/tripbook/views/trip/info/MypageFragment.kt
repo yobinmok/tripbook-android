@@ -1,10 +1,10 @@
 package com.tripbook.tripbook.views.trip.info
 
 
-import android.util.Log
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.auth0.android.auth0.BuildConfig
 import com.tripbook.base.BaseFragment
 import com.tripbook.tripbook.R
 import com.tripbook.tripbook.databinding.FragmentMypageBinding
@@ -16,16 +16,12 @@ class MypageFragment : BaseFragment<FragmentMypageBinding, InfoViewModel>(R.layo
 
     override fun init() {
 
+        //회원 정보 가져오기
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.getMemberInfo()
-            viewModel.memberInfo.collect {
-                if(it != null) {
-                    binding.nickname.text = it.name
 
-                    Log.d("테스트닉네임:::", "닉네임" + it.name)
+            binding.version.text = "버전정보 v" + BuildConfig.VERSION_NAME
 
-                }
-            }
         }
 
         //설정 -> 프로필 수정
@@ -42,6 +38,7 @@ class MypageFragment : BaseFragment<FragmentMypageBinding, InfoViewModel>(R.layo
         binding.btnLogout.setOnClickListener {
             findNavController().navigate(R.id.action_mypageFragment_to_logoutFragment)
         }
+
 
     }
 
