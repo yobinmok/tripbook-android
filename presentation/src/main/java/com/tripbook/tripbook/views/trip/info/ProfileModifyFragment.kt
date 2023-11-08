@@ -46,7 +46,7 @@ class ProfileModifyFragment : BaseFragment<FragmentProfileModifyBinding, LoginVi
                     Timber.tag("updateProfile").d("프로필 변경 성공")
                     // findNavController().navigate(R.id.action_additionalFragment_to_signUpSuccessFragment)
                 } else {
-                    // 회원가입 실패 메시지 띄우기
+                    // 프로필 변경 실패
                     Timber.tag("error updateProfile").d("프로필 변경 실패")
                 }
             }

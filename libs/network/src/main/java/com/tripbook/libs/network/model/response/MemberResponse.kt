@@ -12,9 +12,9 @@ data class MemberResponse (
     @Json(name = "role")
     val role: String,
     @Json(name = "birth")
-    val birth: String,
+    val birth: String?,
     @Json(name = "profile")
-    val profile: String,
+    val profile: String?,
     @Json(name = "termsOfService")
     val termsOfService: Boolean,
     @Json(name = "termsOfPrivacy")
@@ -24,7 +24,7 @@ data class MemberResponse (
     @Json(name = "marketingConsent")
     val marketingConsent: Boolean,
     @Json(name = "point")
-    val point: Long,
+    val point: Long?,
     @Json(name = "status")
     val status: String,
 )

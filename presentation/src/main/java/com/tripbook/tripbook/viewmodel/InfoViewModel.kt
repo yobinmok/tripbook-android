@@ -1,7 +1,9 @@
 package com.tripbook.tripbook.viewmodel
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.viewModelScope
+import com.auth0.android.auth0.BuildConfig
 import com.tripbook.base.BaseViewModel
 import com.tripbook.tripbook.domain.model.MemberInfo
 import com.tripbook.tripbook.domain.usecase.MemberUseCase
@@ -12,6 +14,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import java.io.File
 import javax.inject.Inject
 
@@ -29,11 +32,6 @@ class InfoViewModel @Inject constructor(
 
     private val _email: MutableStateFlow<String?> = MutableStateFlow(null)
     val email: StateFlow<String?> = _email
-    /*
-
-        private val _profileUri: MutableStateFlow<String?> = MutableStateFlow(null)
-        val profileUri: StateFlow<String?> = _profileUri
-    */
 
     private val _version: MutableStateFlow<String?> = MutableStateFlow(null)
     val version: StateFlow<String?> = _version
@@ -49,13 +47,21 @@ class InfoViewModel @Inject constructor(
     fun getMemberInfo() = memberUseCase().onEach {
         _memberInfo.emit(it)
 
-        _nickname.emit(it?.name)
-        _email.emit(it?.email)
+        _nickname.value = it?.name
+        _email.value = it?.name
+
+        Log.d("profile_name", "name" + it?.name)
+        Log.d("profile_email", "email" + it?.email)
+        Log.d("profile_uri", "email" + it?.profile)
 
         val profileUri: Uri? = it?.profile?.let { Uri.parse(it) }
         _profileUri.emit(profileUri)
 
     }.launchIn(viewModelScope)
+
+    fun setName (name :String) {
+        _nickname.value = name
+    }
 
 
     fun updateProfile(): Flow<Boolean> {

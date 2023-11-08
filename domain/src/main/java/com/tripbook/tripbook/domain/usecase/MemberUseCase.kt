@@ -8,6 +8,7 @@ import javax.inject.Inject
 class MemberUseCase  @Inject constructor(
     private val repository: MemberRepository
 ) {
-    operator fun invoke() : Flow<MemberInfo?> = repository.getMember()
-
+    operator fun invoke(): Flow<MemberInfo?> {
+        return repository.getMember()
+    }
 }

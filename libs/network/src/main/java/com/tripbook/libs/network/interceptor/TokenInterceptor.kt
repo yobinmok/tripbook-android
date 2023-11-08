@@ -20,14 +20,13 @@ class TokenInterceptor @Inject constructor(
     override fun intercept(chain: Interceptor.Chain): Response = runBlocking {
         val token = dataStoreManager.tokenFlow.first()
         token?.let {
-            Log.d("response check", it.accessToken + ", " + it.refreshToken)
             val tokenAddedRequest = chain.request().putAuthorizationHeader(
                 Token("Bearer " + it.accessToken, it.refreshToken)
             )
 
             val firstResponse = chain.proceed(tokenAddedRequest)
             return@runBlocking when (firstResponse.code) {
-                401, 500 -> {
+                401, 500 ,403 -> {
                     val refreshedToken = tokenService.refreshToken("Bearer " + it.refreshToken)
                     firstResponse.close()
                     val refreshRequest = chain.request().putAuthorizationHeader(

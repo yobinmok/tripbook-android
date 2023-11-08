@@ -63,6 +63,7 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.retrofit)
     implementation(libs.lottie)
+    implementation(libs.glide)
 
     val firebaseBom = platform(libs.firebase.bom)
     implementation(firebaseBom)
