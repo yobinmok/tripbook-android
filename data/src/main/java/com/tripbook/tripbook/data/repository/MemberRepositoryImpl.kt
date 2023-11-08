@@ -1,10 +1,13 @@
 package com.tripbook.tripbook.data.repository
 
+
 import com.tripbook.database.TokenDataStore
 import com.tripbook.database.TokenEntity
 import com.tripbook.libs.network.NetworkResult
 import com.tripbook.libs.network.safeApiCall
 import com.tripbook.libs.network.service.MemberService
+import com.tripbook.tripbook.data.mapper.toMemberInfo
+import com.tripbook.tripbook.domain.model.MemberInfo
 import com.tripbook.tripbook.domain.repository.MemberRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -89,4 +92,73 @@ class MemberRepositoryImpl @Inject constructor(
             else -> false
         }
     }
+
+    override fun getMember(): Flow<MemberInfo?> =
+        safeApiCall(Dispatchers.IO) {
+            memberService.getMember()
+        }.map { response ->
+            when (response) {
+                is NetworkResult.Success -> {
+                    response.value.toMemberInfo()
+                }
+                else -> null
+            }
+        }
+
+    override fun updateMember (
+        name: String,
+        file: File?,
+        termsOfService: Boolean,
+        termsOfPrivacy: Boolean,
+        termsOfLocation: Boolean,
+        marketingConsent: Boolean,
+        gender: String,
+        birth: String
+    ): Flow<Boolean> = safeApiCall(Dispatchers.IO) {
+        val nameBody = name.toRequestBody("text/plain".toMediaTypeOrNull())
+        val serviceTerms =
+            termsOfService.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+        val privacyTerms =
+            termsOfPrivacy.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+        val locationTerms =
+            termsOfLocation.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+        val marketing =
+            marketingConsent.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+        val genderBody = gender.toRequestBody("text/plain".toMediaTypeOrNull())
+        val birthBody = birth.toRequestBody("text/plain".toMediaTypeOrNull())
+
+        val fileBody = file?.asRequestBody("image/jpeg".toMediaTypeOrNull())
+        val filePart = fileBody?.let { MultipartBody.Part.createFormData("photo", "photo.jpg", it) }
+
+        memberService.updateMember(
+            filePart,
+            mapOf(
+                "name" to nameBody,
+                "termsOfService" to serviceTerms,
+                "termsOfPrivacy" to privacyTerms,
+                "termsOfLocation" to locationTerms,
+                "marketingConsent" to marketing,
+                "gender" to genderBody,
+                "birth" to birthBody
+            )
+        )
+    }.map {
+        when (it) {
+            is NetworkResult.Success -> {
+                tokenDataStore.setToken(
+                    TokenEntity(
+                        it.value.accessToken,
+                        it.value.refreshToken
+                    )
+                )
+                true
+            }
+            else -> run {
+                tokenDataStore.setToken(null)
+                false
+            }
+        }
+    }
+
+
 }

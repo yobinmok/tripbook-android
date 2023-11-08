@@ -24,6 +24,10 @@ import java.io.File
 import javax.inject.Inject
 
 
+enum class Gender {
+    FEMALE, MALE
+}
+
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
@@ -69,6 +73,9 @@ class LoginViewModel @Inject constructor(
 
     private var _errorMsg = MutableStateFlow("")
     val errorMsg: StateFlow<String> get() = _errorMsg
+
+    private var _icon = MutableStateFlow(0)
+    val icon: StateFlow<Int> get() = _icon
 
     // 프로필 사진
     private val _profileUri = MutableStateFlow<Uri?>(null)
@@ -138,20 +145,21 @@ class LoginViewModel @Inject constructor(
     //이용동의별 URL 가져오기
     fun getTermsURL(termsTitle: String): TermsURL {
         return when (termsTitle) {
-            "서비스 이용약관 동의" -> TermsURL(termsTitle, "https://www.naver.com/")
-            "개인정보 수집 및 이용 동의" -> TermsURL(termsTitle, "https://www.youtube.com/")
+            "서비스 이용약관 동의" -> TermsURL(termsTitle, "https://midnight-chips-141.notion.site/30cc27708b4f41f5abc3fb3b7014bcbf")
+            "개인정보 수집 및 이용 동의" -> TermsURL(termsTitle, "https://midnight-chips-141.notion.site/61234ba1e05d4dbd9705b2a6d4f615db?pvs=4")
             "위치정보수집 및 이용동의" -> TermsURL(
                 termsTitle,
-                "https://www.google.com/webhp?hl=ko&sa=X&ved=0ahUKEwiK9-vYnJ3_AhXOCd4KHaFFByoQPAgI"
+                "https://midnight-chips-141.notion.site/bc6070dd00a742e29f38eaa725967855?pvs=4"
             )
 
-            else -> TermsURL(termsTitle, "https://www.daum.net/")
+            else -> TermsURL(termsTitle, "https://midnight-chips-141.notion.site/5ad532b146c04e5b8cac5cca5599b940?pvs=4")
         }
     }
 
     fun validateUserName(name: String) = validateUserNameUseCase(name)
 
     fun setNicknameValid(errorMsg: String?) {
+        _icon.value = R.drawable.ic_clear
         errorMsg?.let { str ->
             _errorMsg.value = str
             _isNicknameValid.value = false
@@ -163,6 +171,10 @@ class LoginViewModel @Inject constructor(
 
     fun setNickname(nickname: String) {
         _nickname.value = nickname
+    }
+
+    fun setIcon(value: Int) {
+        _icon.value = value
     }
 
     fun setProfileUri(uri: Uri?, fullPath: String?, default: Boolean) {
@@ -192,9 +204,5 @@ class LoginViewModel @Inject constructor(
                 _maleButton.value = !_maleButton.value
             }
         }
-    }
-
-    enum class Gender {
-        FEMALE, MALE
     }
 }

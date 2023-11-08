@@ -7,6 +7,8 @@
     <include app:graph = "@navigation/profile"/>
     <include app:graph = "@navigation/travel_news"/>
 
+    <include app:graph = "@navigation/nav_info"/>
+
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.tripbook.tripbook.views.login.LoginFragment">
@@ -16,6 +18,9 @@
         <action
             android:id="@+id/action_loginFragment_to_travelNews"
             app:destination="@id/travel_news" />
+        <action
+            android:id="@+id/action_loginFragment_to_nav_info"
+            app:destination="@id/nav_info" />
     </fragment>
 
 </navigation>

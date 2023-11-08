@@ -28,6 +28,10 @@ annotation class TokenServiceScope
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
+annotation class ArticleServiceScope
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
 annotation class LocationServiceScope
 
 @Qualifier
