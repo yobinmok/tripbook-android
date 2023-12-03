@@ -1,10 +1,11 @@
 @file:Suppress("UnstableApiUsage", "DSL_SCOPE_VIOLATION")
 
 plugins {
-    alias(libs.plugins.kotlin.plugin)
-    alias(libs.plugins.android.application)
+    id("com.tripbook.application")
     id("com.tripbook.hilt")
     id("com.google.gms.google-services")
+    id("androidx.navigation.safeargs.kotlin")
+    kotlin("kapt")
 }
 
 android {
@@ -31,10 +32,15 @@ android {
 
     buildFeatures {
         viewBinding = true
+        //noinspection DataBindingWithoutKapt
         dataBinding = true
+        buildConfig = true
     }
 
     buildTypes {
+        debug {
+            isMinifyEnabled = false
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
@@ -65,6 +71,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.lottie)
     implementation(libs.glide)
+    implementation(libs.paging)
 
     val firebaseBom = platform(libs.firebase.bom)
     implementation(firebaseBom)

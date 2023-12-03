@@ -1,4 +1,3 @@
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     id("com.tripbook.library")
     id("com.tripbook.hilt")
@@ -12,6 +11,8 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":libs:network"))
     implementation(project(":libs:database"))
+
+    implementation(libs.paging)
 
     implementation(libs.retrofit)
     implementation(libs.moshi)

@@ -20,9 +20,9 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import java.io.File
 import javax.inject.Inject
-
 
 enum class Gender {
     FEMALE, MALE
@@ -203,6 +203,12 @@ class LoginViewModel @Inject constructor(
                 if (_femaleButton.value) _femaleButton.value = !_femaleButton.value
                 _maleButton.value = !_maleButton.value
             }
+        }
+    }
+
+    fun clearStatus() {
+        viewModelScope.launch {
+            _isValidatedUser.emit(null)
         }
     }
 }

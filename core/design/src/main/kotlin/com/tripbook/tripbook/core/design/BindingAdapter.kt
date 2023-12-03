@@ -5,9 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.ColorInt
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 
+@Suppress("UNUSED")
 object BindingAdapter {
 
     @JvmStatic
@@ -39,11 +41,29 @@ object BindingAdapter {
     }
 
     @JvmStatic
+    @BindingAdapter("imgURL")
+    fun setImageWithString(imageView: ImageView, urlString: String?) {
+        urlString?.let {
+            Glide.with(imageView.context)
+                .load(it)
+                .placeholder(R.drawable.icn_pic_36)
+                .into(imageView)
+        } ?: imageView.setImageResource(R.drawable.icn_pic_36)
+
+    }
+
+    @JvmStatic
     @BindingAdapter("marginBottom")
     fun setButtonMarginBottom(view: View, dimen: Float) {
         (view.layoutParams as ViewGroup.MarginLayoutParams).let {
             it.bottomMargin = dimen.toInt()
             view.layoutParams = it
         }
+    }
+
+    @JvmStatic
+    @BindingAdapter("app:tint")
+    fun setImageViewColor(imageView: ImageView, @ColorInt color: Int) {
+        imageView.setColorFilter(color)
     }
 }
