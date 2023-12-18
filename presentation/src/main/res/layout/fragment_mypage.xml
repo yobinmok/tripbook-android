@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    >
 
     <data>
 
@@ -65,7 +65,7 @@
                 android:layout_marginVertical="25dp"
                 android:layout_marginStart="20dp"
                 android:background="@drawable/border_circleimageview"
-                app:profileImgUri="@{viewModel.profileUri}"
+                app:profileImg="@{viewModel.profileUrl}"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <LinearLayout
@@ -101,14 +101,22 @@
                     app:layout_constraintTop_toBottomOf="@id/nickname" />
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/btn_setting"
+            <LinearLayout
+                android:id="@+id/btn_settimg_linear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icn_setting_24"
-                android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/basic_margin"
-                app:tint="@color/white" />
+                android:layout_marginEnd="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/profile"
+                app:layout_constraintTop_toBottomOf="@id/profile">
+
+                <ImageView
+                    android:id="@+id/btn_setting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icn_setting_24"
+                    app:tint="@color/white" />
+            </LinearLayout>
 
         </LinearLayout>
 

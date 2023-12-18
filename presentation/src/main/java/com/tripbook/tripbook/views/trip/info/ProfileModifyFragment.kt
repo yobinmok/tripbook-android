@@ -3,9 +3,9 @@ package com.tripbook.tripbook.views.trip.info
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.widget.doOnTextChanged
+import androidx.navigation.fragment.findNavController
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.tripbook.base.BaseFragment
 import com.tripbook.tripbook.R
 import com.tripbook.tripbook.databinding.FragmentProfileModifyBinding
@@ -30,7 +30,6 @@ class ProfileModifyFragment :
         addNicknameTextWatcher()
 
         binding.profile.setOnClickListener {
-            // 권한 관리는 회원가입 때 했으니까 바로 dialog 띄워도 될 듯!
             ProfileDialogFragment().show(
                 requireActivity().supportFragmentManager,
                 "Profile Fragment"
@@ -42,8 +41,17 @@ class ProfileModifyFragment :
         }
 
         binding.completeButton.setOnClickListener {
-            duplicateCheck()
+
+            infoviewModel.nickCheck(binding.nickname.text.toString())
+            val nickChk = infoviewModel.nicknameChecked.value
+
+            if (nickChk) {
+                duplicateCheck()
+            }
+
+            updateProfile()
         }
+
     }
 
     private fun updateProfile() {
@@ -51,7 +59,8 @@ class ProfileModifyFragment :
             val imagePath = viewModel.profileUri.value?.let {
                 requireContext().getImagePathFromURI(it)
             }
-            infoviewModel.updateProfile(imagePath).collect {
+            val name = binding.nickname.text.toString()
+            infoviewModel.updateProfile(name, imagePath).collect {
                 if (it) {
                     //내정보로 다시 돌아가기
                     Timber.tag("updateProfile").d("프로필 변경 성공")
@@ -74,9 +83,7 @@ class ProfileModifyFragment :
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.validateUserName(binding.nickname.text.toString()).collect {
                 if (it) {
-                    // 중복되는 닉네임이 아니면 update하기!
-                    updateProfile()
-//                    viewModel.setNickname(binding.nickname.text.toString())
+                    viewModel.setNickname(binding.nickname.text.toString())
                 } else {
                     viewModel.setNicknameValid(binding.nickname.setError(resources.getString(R.string.nickname_duplicate_alert)))
                 }

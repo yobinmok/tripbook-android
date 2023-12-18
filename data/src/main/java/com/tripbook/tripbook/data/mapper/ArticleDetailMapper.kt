@@ -15,7 +15,7 @@ fun ArticleDetailResponse.toArticleDetail() = ArticleDetail(
         profileUrl = author.profileUrl ?: "",
         role = author.role
     ),
-    thumbnailUrl = thumbnailUrl,
+    thumbnailUrl = thumbnailUrl ?: "",
     tagList = tagList,
     numberOfHearts = numberOfHearts,
     numberOfBookmarks = numberOfBookmarks,
@@ -35,7 +35,7 @@ fun CommentResponse.toComment() = Comment(
         profileUrl = author.profileUrl ?: "",
         role = author.role
     ),
-    //childList = childList.map { it.toComment() },
+
     childList = childList, //여기 코멘트 추가해야 됨
     createdAt = createdAt,
     updatedAt = updatedAt
