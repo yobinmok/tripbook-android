@@ -7,10 +7,13 @@ import com.tripbook.libs.network.NetworkResult
 import com.tripbook.libs.network.safeApiCall
 import com.tripbook.libs.network.service.MemberService
 import com.tripbook.tripbook.data.mapper.toMemberInfo
+import com.tripbook.tripbook.data.mapper.toTempArticle
 import com.tripbook.tripbook.domain.model.MemberInfo
+import com.tripbook.tripbook.domain.model.TempArticle
 import com.tripbook.tripbook.domain.repository.MemberRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -36,6 +39,19 @@ class MemberRepositoryImpl @Inject constructor(
         }
     }
 
+    override fun getTempArticleList():Flow<List<TempArticle>?> = safeApiCall(Dispatchers.IO){
+        memberService.getTempArticleList()
+    }.map {
+        when(it){
+                is NetworkResult.Success -> {
+                    it.value.map { article ->
+                        article.toTempArticle()
+                    }
+                }
+                else -> null
+            }
+    }
+
     override fun getMember(): Flow<MemberInfo?> =
         safeApiCall(Dispatchers.IO) {
             memberService.getMember()
@@ -58,6 +74,7 @@ class MemberRepositoryImpl @Inject constructor(
         gender: String,
         birth: String
     ): Flow<Boolean> = safeApiCall(Dispatchers.IO) {
+
         val nameBody = name.toRequestBody("text/plain".toMediaTypeOrNull())
         val serviceTerms =
             termsOfService.toString().toRequestBody("text/plain".toMediaTypeOrNull())
@@ -71,7 +88,7 @@ class MemberRepositoryImpl @Inject constructor(
         val birthBody = birth.toRequestBody("text/plain".toMediaTypeOrNull())
 
         val fileBody = file?.asRequestBody("image/jpeg".toMediaTypeOrNull())
-        val filePart = fileBody?.let { MultipartBody.Part.createFormData("photo", "photo.jpg", it) }
+        val filePart = fileBody?.let { MultipartBody.Part.createFormData("imageFile", "photo.jpg", it) }
 
         memberService.updateMember(
             filePart,
@@ -93,7 +110,7 @@ class MemberRepositoryImpl @Inject constructor(
                         it.value.accessToken,
                         it.value.refreshToken
                     )
-                )
+                ).collect()
                 true
             }
             else -> run {
