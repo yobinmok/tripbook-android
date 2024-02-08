@@ -8,6 +8,7 @@ import com.tripbook.tripbook.R
 import com.tripbook.tripbook.BuildConfig
 import com.tripbook.tripbook.databinding.FragmentMypageBinding
 import com.tripbook.tripbook.viewmodel.InfoViewModel
+import com.tripbook.tripbook.views.login.terms.TermsDialogFragment
 import kotlinx.coroutines.launch
 
 class MypageFragment :
@@ -43,5 +44,12 @@ class MypageFragment :
                 MypageFragmentDirections.actionMypageFragmentToLogoutFragment()
             )
         }
+
+        //회원탈퇴
+        binding.memberDelete.setOnClickListener {
+            MemberDelDialogFragment().show(childFragmentManager, "MemberDelete Fragment")
+        }
+
     }
+
 }
