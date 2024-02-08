@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.tripbook.tripbook.viewmodel.LoginViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="248dp"
+            android:background="@drawable/memberdel_dialog"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/memberdel_mainText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="38dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="@string/memberDel_mainText"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/memberdel_subText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center_horizontal|center_vertical"
+                app:layout_constraintTop_toBottomOf="@id/memberdel_mainText"
+                android:text="@string/memberDel_subText"
+                android:textColor="@color/gray_G_40"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+
+            <com.tripbook.tripbook.views.login.profile.CustomEditText
+                android:id="@+id/nickname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="18dp"
+                android:layout_marginTop="24dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="@string/nickname_hint"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:theme="@style/EditTextStyle"
+                app:layout_constraintTop_toBottomOf="@id/memberdel_subText"
+                tools:layout_editor_absoluteX="17dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/nickname"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_memberDel_confirm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_outline_unable"
+                    android:text="@string/memberDel_confirm"
+                    android:textColor="@color/gray_G_50"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_positive"
+                    android:background="@drawable/button_close"
+                    android:layout_width="0dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/gray_G_50"
+                    android:text="@string/memberDel_Cancel"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>
