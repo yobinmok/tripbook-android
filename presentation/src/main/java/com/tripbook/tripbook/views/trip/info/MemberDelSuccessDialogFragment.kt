@@ -2,19 +2,21 @@ package com.tripbook.tripbook.views.trip.info
 
 import android.os.Bundle
 import android.view.Gravity
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.tripbook.base.BaseDialogFragment
 import com.tripbook.tripbook.R
-import com.tripbook.tripbook.data.model.TermsURL
-import com.tripbook.tripbook.databinding.FragmentTermsDialogBinding
-import com.tripbook.tripbook.viewmodel.LoginViewModel
+import com.tripbook.tripbook.databinding.FragmentMemberdelSuccessBinding
+import com.tripbook.tripbook.viewmodel.MemberDeleteViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MemberDelSuccessDialogFragment :
-    BaseDialogFragment<FragmentTermsDialogBinding, LoginViewModel>(R.layout.fragment_memberdel_Success) {
+    BaseDialogFragment<FragmentMemberdelSuccessBinding, MemberDeleteViewModel>(R.layout.fragment_memberdel_success) {
 
-    override val viewModel: LoginViewModel by activityViewModels()
+    override val viewModel: MemberDeleteViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,25 +30,17 @@ class MemberDelSuccessDialogFragment :
     }
 
     override fun init() {
-        binding.viewModel = viewModel
 
-        val webView: WebView = binding.termsWebView
-        webView.settings.javaScriptEnabled = true
-        webView.webViewClient = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                if (url != null) {
-                    view?.loadUrl(url)
-                }
-                return true
-            }
+        CoroutineScope(Dispatchers.Main).launch {
+            delay(3000)
+            findNavController().navigate(
+                MemberDelSuccessDialogFragmentDirections.actionMemberDelSuccessDialogFragmentToLoginFragment()
+            )
         }
 
-        val termsTitle = viewModel.termsTitle.value
-        val termsURL: TermsURL = viewModel.getTermsURL(termsTitle)
-        webView.loadUrl(termsURL.url)
-
-        binding.close.setOnClickListener {
+        binding.icnCancel.setOnClickListener {
             dismiss()
         }
+
     }
 }
