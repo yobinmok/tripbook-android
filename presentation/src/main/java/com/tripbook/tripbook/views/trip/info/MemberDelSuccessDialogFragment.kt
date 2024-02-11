@@ -26,15 +26,17 @@ class MemberDelSuccessDialogFragment :
 
     override fun onStart() {
         super.onStart()
-        dialog?.window?.setGravity(Gravity.BOTTOM)
+        dialog?.window?.setGravity(Gravity.CENTER)
     }
 
     override fun init() {
 
+        binding.viewModel = viewModel
+
         CoroutineScope(Dispatchers.Main).launch {
             delay(3000)
             findNavController().navigate(
-                MemberDelSuccessDialogFragmentDirections.actionMemberDelSuccessDialogFragmentToLoginFragment()
+                MypageFragmentDirections.actionMypageFragmentToSplashActivity()
             )
         }
 

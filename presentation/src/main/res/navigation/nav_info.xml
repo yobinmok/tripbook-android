@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_mypageFragment_to_logoutFragment"
             app:destination="@id/logoutFragment" />
+        <action
+            android:id="@+id/action_mypageFragment_to_splashActivity"
+            app:destination="@id/splashActivity" />
     </fragment>
     <fragment
         android:id="@+id/askFragment"
@@ -35,6 +38,10 @@
         android:id="@+id/logoutFragment"
         android:name="com.tripbook.tripbook.views.trip.info.LogoutFragment"
         tools:layout="@layout/fragment_logout"/>
+    <activity
+        android:id="@+id/splashActivity"
+        android:name="com.tripbook.tripbook.views.splash.SplashActivity"
+        tools:layout="@layout/activity_splash"/>
 
 
 </navigation>

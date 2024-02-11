@@ -110,4 +110,12 @@ class MemberRepositoryImpl @Inject constructor(
         }
     }
 
+    override fun deleteMember(email: String): Flow<Boolean> = safeApiCall(Dispatchers.IO) {
+        memberService.deleteMember(email)
+    }.map { result ->
+        when (result) {
+            is NetworkResult.Success -> true
+            else -> false
+        }
+    }
 }

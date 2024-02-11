@@ -143,6 +143,10 @@ class InfoViewModel @Inject constructor(
         _profileChgUrl.value = profileUrl.value
     }
 
+    fun setVersion(version : String) {
+        _version.value = version
+    }
+
     private fun setProfileUriChg(url: String) {
         _profileChgUrl.value = url
     }

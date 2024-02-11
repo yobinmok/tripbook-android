@@ -1,5 +1,6 @@
 package com.tripbook.libs.network.service
 
+import com.tripbook.libs.network.model.response.DeleteMemberResponse
 import com.tripbook.libs.network.model.response.MemberResponse
 import com.tripbook.libs.network.model.response.TempArticleResponse
 import com.tripbook.libs.network.model.response.UnitResponse
@@ -32,4 +33,9 @@ interface MemberService {
         @Part file : MultipartBody.Part?,
         @PartMap params : Map<String, @JvmSuppressWildcards RequestBody>
     ) : UpdateMemberResponse
+
+    @POST("delete")
+    suspend fun deleteMember(
+        @Query("email") email: String
+    ) : DeleteMemberResponse
 }

@@ -24,4 +24,9 @@ interface MemberRepository {
         gender: String,
         birth: String
     ): Flow<Boolean>
+
+    fun deleteMember(
+        email: String
+    ): Flow<Boolean>
+
 }
