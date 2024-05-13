@@ -142,14 +142,14 @@ class LoginViewModel @Inject constructor(
     //이용동의별 URL 가져오기
     fun getTermsURL(termsTitle: String): TermsURL {
         return when (termsTitle) {
-            "서비스 이용약관 동의" -> TermsURL(termsTitle, "https://midnight-chips-141.notion.site/30cc27708b4f41f5abc3fb3b7014bcbf")
-            "개인정보 수집 및 이용 동의" -> TermsURL(termsTitle, "https://midnight-chips-141.notion.site/61234ba1e05d4dbd9705b2a6d4f615db?pvs=4")
+            "서비스 이용약관 동의" -> TermsURL(termsTitle, "https://docs.google.com/document/d/1eOC7Z4TSl067zHYonGZlSPePhD29k58sQC89aFwQweY/edit?usp=sharing")
+            "개인정보 수집 및 이용 동의" -> TermsURL(termsTitle, "https://docs.google.com/document/d/1hB68NAta0bB5k4hTQvB_NqXEiTaG0bGq9PDXBup_6JY/edit?usp=sharing")
             "위치정보수집 및 이용동의" -> TermsURL(
                 termsTitle,
-                "https://midnight-chips-141.notion.site/bc6070dd00a742e29f38eaa725967855?pvs=4"
+                "https://docs.google.com/document/d/13D9yeGxa9BRodTbo8zghxijZ_DUvIh0Eg_IRoXGuDPo/edit?usp=sharing"
             )
 
-            else -> TermsURL(termsTitle, "https://midnight-chips-141.notion.site/5ad532b146c04e5b8cac5cca5599b940?pvs=4")
+            else -> TermsURL(termsTitle, "https://docs.google.com/document/d/1xBKXDrSDyy0dpzrfOy6ckOdOuYwYw2Oz-oRJhmt1X5U/edit?usp=sharing")
         }
     }
 
