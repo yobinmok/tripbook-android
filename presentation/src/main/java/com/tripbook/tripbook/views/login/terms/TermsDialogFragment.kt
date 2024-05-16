@@ -1,6 +1,8 @@
 package com.tripbook.tripbook.views.login.terms
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -27,6 +29,7 @@ class TermsDialogFragment :
         dialog?.window?.setGravity(Gravity.BOTTOM)
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun init() {
         binding.viewModel = viewModel
 
@@ -39,6 +42,8 @@ class TermsDialogFragment :
                 }
                 return true
             }
+
+
         }
 
         val termsTitle = viewModel.termsTitle.value

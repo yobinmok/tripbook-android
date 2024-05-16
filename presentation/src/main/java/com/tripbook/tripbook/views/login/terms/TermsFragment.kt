@@ -1,5 +1,6 @@
 package com.tripbook.tripbook.views.login.terms
 
+import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
